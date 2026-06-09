@@ -57,4 +57,4 @@ templates/
 
 ## Version
 
-Package: **1.3.0** | Methodology: **1.3.0** (EN) / **1.2.2** (FR)
+Package: **1.3.1** | Methodology: **1.3.0** (EN) / **1.2.2** (FR)

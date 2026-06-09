@@ -1,8 +1,10 @@
 # Product Architect
 
-Agent skills and subagents for product architects, built on the **[Butterfly Process](https://app.notion.com/p/pentaa/Butterfly-Process-23f5cf675878800081c8d7dc04bb807b)** methodology by Pentaa.
+By **[Benjamin Arthuys](https://www.pentaa.studio)** · [Pentaa Studio](https://www.pentaa.studio)
 
-**Version**: 1.3.0
+Agent skills and subagents for product architects, built on the **[Butterfly Process](https://app.notion.com/p/pentaa/Butterfly-Process-23f5cf675878800081c8d7dc04bb807b)** methodology by Pentaa Studio.
+
+**Version**: 1.3.1
 
 ## Before you start (required)
 
