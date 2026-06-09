@@ -4,7 +4,7 @@ description: >-
   Formulates clear intentional definition (Butterfly Process Chapter 3) — tension
   extraction, How Might We questions, synthesis, team alignment. Use when turning
   research into problem statements, HMW, or product framing after empathy work.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "3"
 ---
 
@@ -52,4 +52,4 @@ Chapter 3. Extract a living tension; do not jump to solutions.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 3](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 3](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

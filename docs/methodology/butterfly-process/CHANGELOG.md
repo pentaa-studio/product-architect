@@ -1,5 +1,10 @@
 # Butterfly Process - Changelog
 
+## 1.3.0 - 2026-06-09
+
+- Add English translation: `BUTTERFLY-PROCESS.en.md` (Chapters 0-12 + Conclusion)
+- README: "Before you start" section (read methodology before installing skills)
+
 ## 1.2.2 - 2026-06-09
 
 - Suppression des tirets cadratins (`—`) : remplacés par `-`, `:` ou virgules selon le contexte

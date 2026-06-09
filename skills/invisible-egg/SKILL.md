@@ -5,7 +5,7 @@ description: >-
   creative dissolution, and resisting premature framing. Use when a project is
   still fuzzy, at ideation start, or when the user resists rushing to MVP/business
   model before sensing the intention.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "0"
 ---
 
@@ -44,4 +44,4 @@ Chapter 0 of the Butterfly Process. Honor the fertile void before structure.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 0](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 0](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

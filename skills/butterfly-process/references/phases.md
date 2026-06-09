@@ -1,6 +1,6 @@
 # Butterfly Process — Phase Index
 
-Version: 1.2.2
+Version: 1.3.0
 
 ## Linear reading order
 
