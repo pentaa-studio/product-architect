@@ -5,7 +5,7 @@ description: >-
   INPUT wing (IDENTIFY/SALE), OUTPUT wing (DESIGN/DEVELOP). Use when mapping
   delivery workflows, team responsibilities, backlog conversion, or the
   operational butterfly diagram.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "10"
 ---
 
@@ -73,4 +73,4 @@ Central conversion point. Artefacts:
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 10](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 10](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

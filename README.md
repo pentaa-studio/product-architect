@@ -1,8 +1,21 @@
 # Product Architect
 
-Agent skills and subagents for product architects, built on the **[Butterfly Process](https://app.notion.com/p/pentaa/Butterfly-Process-23f5cf675878800081c8d7dc04bb807b)** methodology by Pentaa.
+By **[Benjamin Arthuys](https://www.pentaa.studio)** · [Pentaa Studio](https://www.pentaa.studio)
 
-**Version**: 1.2.2
+Agent skills and subagents for product architects, built on the **[Butterfly Process](https://app.notion.com/p/pentaa/Butterfly-Process-23f5cf675878800081c8d7dc04bb807b)** methodology by Pentaa Studio.
+
+**Version**: 1.3.1
+
+## Before you start (required)
+
+**Read the Butterfly Process methodology first** — agents and skills assume you understand the phases, loops, and rituals.
+
+| Language | Document |
+|----------|----------|
+| **English** (recommended) | [BUTTERFLY-PROCESS.en.md](./docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md) |
+| French (Notion source) | [BUTTERFLY-PROCESS.md](./docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md) |
+
+Linear reading (Chapters 0–12) is best for a first pass. Then install skills and subagents below.
 
 ## What is this?
 
@@ -17,10 +30,10 @@ A installable skill package for Cursor (and compatible agent runtimes) that teac
 
 ```bash
 # All skills (global)
-npx skills add <your-org>/product-architect --all -g -y
+npx skills add pentaa-studio/product-architect --all -g -y
 
 # Single skill
-npx skills add <your-org>/product-architect --skill butterfly-process -g -y
+npx skills add pentaa-studio/product-architect --skill butterfly-process -g -y
 ```
 
 For local development, symlink or copy `skills/` into `.cursor/skills/` or `~/.cursor/skills/`.
@@ -37,11 +50,12 @@ Or clone this repo and use it as your Cursor workspace.
 
 ## Methodology
 
-The socle lives here:
+| File | Language |
+|------|----------|
+| [BUTTERFLY-PROCESS.en.md](./docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md) | English (v1.3.0) |
+| [BUTTERFLY-PROCESS.md](./docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md) | French, Notion source (v1.2.2) |
 
-**[docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md](./docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)**
-
-Synced with Notion (methodology v1.2.2). Chapter 10 sourced from [FigJam](https://www.figma.com/board/7YQbMLEPV43LCcFzGeBoQP/Pentaa---App-Builders?node-id=2-885).
+Chapter 10 operational map: [FigJam](https://www.figma.com/board/7YQbMLEPV43LCcFzGeBoQP/Pentaa---App-Builders?node-id=2-885).
 
 ### Chapter → skill map
 

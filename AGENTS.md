@@ -4,7 +4,7 @@ Navigation guide for AI agents working in this repository.
 
 ## Start here
 
-1. **Methodology**: `docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md` (v1.2.2, canonical)
+1. **Methodology**: `docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md` (EN, v1.3.0) or `BUTTERFLY-PROCESS.md` (FR, v1.2.2)
 2. **Orchestration skill**: `skills/butterfly-process/SKILL.md`
 3. **Phase index**: `skills/butterfly-process/references/phases.md`
 
@@ -57,4 +57,4 @@ templates/
 
 ## Version
 
-Package: **1.2.2** | Methodology: **1.2.2**
+Package: **1.3.1** | Methodology: **1.3.0** (EN) / **1.2.2** (FR)

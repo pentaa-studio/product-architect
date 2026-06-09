@@ -4,7 +4,7 @@ description: >-
   Conducts radical empathy research (Butterfly Process Chapter 2) — open interviews,
   passive observation, immersion, field journal. Use for user discovery, customer
   interviews, ethnography, or when validating assumptions with humans not markets.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "2"
 ---
 
@@ -63,4 +63,4 @@ Answer in one plain sentence:
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 2](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 2](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

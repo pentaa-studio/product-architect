@@ -5,7 +5,7 @@ description: >-
   Use when framing product strategy, discovery, definition, prototyping, design,
   delivery, team alignment, or when the user mentions Butterfly Process, double
   loop, imaginaux, or product architect workflow.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 ---
 
 # Butterfly Process
@@ -14,7 +14,9 @@ Apply the canonical Butterfly Process methodology for product architecture work.
 
 ## Before any task
 
-1. Read `docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md` (v1.0.0)
+1. Read the methodology document first (required):
+   - **English**: `docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md`
+   - **French**: `docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md`
 2. Identify the current chapter / phase
 3. Delegate to the matching chapter skill when the task is phase-specific
 
@@ -51,5 +53,6 @@ These loops run in parallel and spiral — never treat the process as a one-way 
 
 ## Additional resources
 
-- Full methodology: [BUTTERFLY-PROCESS.md](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+- Full methodology (EN): [BUTTERFLY-PROCESS.en.md](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)
+- Full methodology (FR): [BUTTERFLY-PROCESS.md](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
 - Phase index: [references/phases.md](references/phases.md)

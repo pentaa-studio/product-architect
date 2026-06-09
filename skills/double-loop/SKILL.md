@@ -4,7 +4,7 @@ description: >-
   Operates the double loop system (Butterfly Process Chapter 7) — sense loop and
   incarnation loop in parallel spiral. Use when prioritizing discovery vs delivery,
   resetting product direction, or preventing linear waterfall drift.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "7"
 ---
 
@@ -56,4 +56,4 @@ Facilitator keeps clarity on which loop is active for the project moment.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 7](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 7](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

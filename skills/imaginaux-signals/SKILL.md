@@ -4,7 +4,7 @@ description: >-
   Captures and clusters weak signals (imaginaux) from Butterfly Process Chapter 1.
   Use when collecting early intuitions, recurring themes, emotional triggers, or
   pre-idea patterns before user research.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "1"
 ---
 
@@ -41,4 +41,4 @@ Chapter 1. Recognize imaginaux before they become structured ideas.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 1](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 1](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)
