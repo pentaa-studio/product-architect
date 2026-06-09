@@ -4,7 +4,7 @@ description: >-
   Guides anchored development (Butterfly Process Chapter 6) — product-tech loop,
   conscious delivery, invisible debt. Use when scoping technical delivery, PRD
   handoff, build trade-offs, or shipping with quality and intention preserved.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "6"
 ---
 
@@ -55,4 +55,4 @@ Launch is birth, not finish.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 6](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 6](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

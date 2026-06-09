@@ -4,7 +4,7 @@ description: >-
   Guides living prototyping (Butterfly Process Chapter 4) — tangible hypotheses,
   context testing, fast learning loops. Use when building prototypes, pretotypes,
   smoke tests, or validating desirability and viability before full build.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "4"
 ---
 
@@ -56,4 +56,4 @@ Prototype → test → learn → adjust → re-prototype (permanent movement)
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 4](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 4](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

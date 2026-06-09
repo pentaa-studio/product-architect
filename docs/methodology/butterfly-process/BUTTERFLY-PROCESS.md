@@ -14,8 +14,9 @@ author: Benjamin Arthuys / Pentaa
 
 # 🦋 Butterfly Process
 
-> Canonical methodology document for the Product Architect repository.
+> Canonical methodology document for the Product Architect repository (French).
 > Content synced verbatim from Notion. Do not paraphrase in agent outputs when citing this document.
+> English version: [BUTTERFLY-PROCESS.en.md](./BUTTERFLY-PROCESS.en.md)
 
 ## Pourquoi ce récit ?
 Je m’appelle Benjamin Arthuys, cela fait près de quinze ans que je travaille sur ce processus. Au départ, ce n’était qu’une intuition : celle d’un design plus large, plus vivant, plus organique que ce qu’on me proposait. J’ai commencé à poser les premières briques de ce qui allait devenir le *Butterfly Process* dans les startups où j’étais fondateur ou en poste de management. Très vite, j’ai compris qu’il ne s’agissait pas simplement d’une méthode de conception produit, mais d’un véritable fil conducteur pour penser, aligner et faire évoluer une organisation entière.

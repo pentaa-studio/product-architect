@@ -1,10 +1,11 @@
-# Butterfly Process — Methodology
+# Butterfly Process - Methodology
 
 Canonical source of truth for the Product Architect skill package.
 
 | File | Purpose |
 |------|---------|
-| [BUTTERFLY-PROCESS.md](./BUTTERFLY-PROCESS.md) | Full methodology (verbatim from Notion) |
+| [BUTTERFLY-PROCESS.en.md](./BUTTERFLY-PROCESS.en.md) | Full methodology in **English** (read this first) |
+| [BUTTERFLY-PROCESS.md](./BUTTERFLY-PROCESS.md) | Full methodology in **French** (verbatim from Notion) |
 | [CHANGELOG.md](./CHANGELOG.md) | Methodology version history |
 | [diagrams/](./diagrams/) | Chapter illustrations |
 
@@ -16,7 +17,7 @@ Methodology follows [semver](https://semver.org/):
 - **MINOR** — new chapter, artefact, or non-breaking extension
 - **MAJOR** — breaking change to phases, loops, or core concepts
 
-Current version: **1.2.2**
+Current version: **1.3.0** (EN) / **1.2.2** (FR source)
 
 ## Sync from Notion
 

@@ -4,7 +4,7 @@ description: >-
   Shapes embodied design (Butterfly Process Chapter 5) — experience coherence,
   invisible narrative, emotional intent. Use when refining UX, UI systems, user
   journeys, or translating validated prototypes into coherent product experience.
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "5"
 ---
 
@@ -54,4 +54,4 @@ Over-polish kills the soul — preserve initial vibration in final form.
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitre 5](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapter 5](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)

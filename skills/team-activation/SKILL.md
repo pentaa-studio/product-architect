@@ -6,7 +6,7 @@ description: >-
   bridge. Use for org alignment, cross-functional rituals, PM facilitation, or
   integrating sales/marketing/support into discovery. For the operational
   incarnation map (IMAGINE hub), use incarnation-loop skill (Ch.10).
-butterfly-process-version: "1.2.2"
+butterfly-process-version: "1.3.0"
 butterfly-chapter: "8-9,11"
 ---
 
@@ -82,4 +82,4 @@ Develop **collective informed intuition** — not yes to everything, not numbers
 
 ## Reference
 
-[BUTTERFLY-PROCESS.md — Chapitres 8–11](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.md)
+[BUTTERFLY-PROCESS.en.md - Chapters 8-11](../../docs/methodology/butterfly-process/BUTTERFLY-PROCESS.en.md)
