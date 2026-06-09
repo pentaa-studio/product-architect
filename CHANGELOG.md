@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 - 2026-06-09
+
+- README: attribution to Benjamin Arthuys / Pentaa Studio
+
 ## 1.3.0 - 2026-06-09
 
 - English methodology: `BUTTERFLY-PROCESS.en.md` (full translation, Ch.0-12 + Conclusion)
