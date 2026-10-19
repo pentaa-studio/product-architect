@@ -4,34 +4,69 @@ import { useEffect, useRef, useState } from "react";
 
 // Parcours — la vie monte, descend, ondule. Coordonnées en unités de la maquette Figma (frame 1440px).
 const DESIGN_WIDTH = 1440;
-const HEIGHT = 190;
-const BASELINE = 94;
+const HEIGHT = 224;
+const BASELINE = 102;
 const STEP = 3;
 const HEAD_END = 1404; // "aujourd'hui"
-const INTRO_MS = 4600;
+const INTRO_MS = 5600;
 
-type Step = { title: string; year?: string; place?: string; x: number; y: number };
+// La vie au-dessus de la vague, la carrière en dessous (sur deux rangées pour respirer).
+const LIFE_Y = 6;
+const CAREER_Y = [152, 188];
+
+type Step = {
+  kind: "life" | "career";
+  title: string;
+  year?: string;
+  place?: string;
+  x: number;
+  y: number;
+};
+
+const life = (title: string, x: number, year?: string, place?: string): Step => ({
+  kind: "life",
+  title,
+  year,
+  place,
+  x,
+  y: LIFE_Y,
+});
+
+const career = (title: string, x: number, row: 0 | 1, year?: string, place?: string): Step => ({
+  kind: "career",
+  title,
+  year,
+  place,
+  x,
+  y: CAREER_Y[row],
+});
 
 const steps: Step[] = [
-  { title: "Graphiste", year: "2008", place: "SARL P.E.E", x: 80, y: 116 },
-  { title: "Product Designer", year: "2012", place: "Mediaswapp", x: 232, y: 144 },
-  { title: "Dev Front", year: "2015", place: "Mobintouch", x: 416, y: 143 },
-  { title: "Van life", x: 543, y: 132 },
-  { title: "Développeur logiciel", year: "Certification gouv", x: 626, y: 6 },
-  { title: "Product Manager", year: "2018", place: "Syment", x: 734, y: 142 },
-  { title: "Head of Product", year: "Certification Thiga", x: 817, y: 14 },
-  { title: "Head of Product", year: "2020", place: "Syment", x: 867, y: 127 },
-  { title: "CPO", year: "2021", place: "Ternoa", x: 1019, y: 139 },
-  { title: "Product Architect", year: "since 2023", place: "Pentaa Studio", x: 1220, y: 135 },
+  life("Né à Toulouse", 14, "1986"),
+  career("Fondateur", 60, 0, "2008", "Marque PEE"),
+  life("San Francisco", 128, "2009", "Vendre PEE"),
+  career("Product Designer", 190, 1, "2012", "Mediaswapp"),
+  life("Barcelone", 268, "2012 – 2015"),
+  career("Dev Front", 320, 0, "2015", "Mobintouch"),
+  career("Rédac chef", 440, 1, "Blog tech"),
+  life("Van life", 500, "Camion fait de A à Z"),
+  career("Développeur logiciel", 600, 0, "Certification gouv"),
+  life("Pays Basque", 690, "Les vagues"),
+  career("Product Manager", 740, 1, "2018", "Syment"),
+  career("Head of Product", 850, 0, "Certification Thiga"),
+  career("Head of Product", 960, 1, "2020", "Syment"),
+  career("CPO", 1060, 0, "2021", "Ternoa"),
+  career("Product Architect", 1160, 1, "since 2023", "Pentaa Studio"),
+  career("Formateur IA", 1250, 0, "CCI · Maria School"),
 ];
 
 type Icon = { src: string; x: number; size: number };
 
 const icons: Icon[] = [
-  { src: "/figma/bridge.svg", x: 117, size: 24 },
-  { src: "/figma/sagrada-familia.png", x: 260, size: 17 },
-  { src: "/figma/surfer-van.svg", x: 567, size: 22 },
-  { src: "/figma/moonwave.svg", x: 701, size: 21 },
+  { src: "/figma/bridge.svg", x: 168, size: 24 },
+  { src: "/figma/sagrada-familia.png", x: 300, size: 17 },
+  { src: "/figma/surfer-van.svg", x: 540, size: 22 },
+  { src: "/figma/moonwave.svg", x: 722, size: 21 },
   { src: "/figma/mountain-road.svg", x: 1144, size: 17 },
 ];
 
@@ -66,6 +101,7 @@ function pathFor(ys: Float32Array, sx: number, until = DESIGN_WIDTH, yAtUntil?: 
 
 export default function Timeline() {
   const [active, setActive] = useState<number | null>(null);
+  const [explored, setExplored] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -101,6 +137,9 @@ export default function Timeline() {
     let visible = false;
     let raf = 0;
     let userPanned = false;
+    // Pendant l'intro, chaque étape se dévoile un instant au passage du point.
+    const flashUntil = new Float64Array(steps.length);
+    const wasReached = steps.map(() => false);
 
     // Ondulation locale sous le curseur ou l'étape survolée.
     const pointer = { x: -1000, targetX: -1000, amp: 0, targetAmp: 0 };
@@ -164,10 +203,13 @@ export default function Timeline() {
           link.setAttribute("x2", (step.x * sx).toFixed(1));
           link.setAttribute("y1", cy.toFixed(1));
           link.setAttribute("y2", labelEdge.toFixed(1));
-          link.dataset.reached = String(reached);
         }
+        if (reached && !wasReached[i] && !reduceMotion && progress < 1) flashUntil[i] = now + 1700;
+        wasReached[i] = reached;
+        const show = String(hovered !== null ? hovered === i : now < flashUntil[i]);
+        if (link && link.dataset.show !== show) link.dataset.show = show;
         const label = labelRefs.current[i];
-        if (label && label.dataset.reached !== String(reached)) label.dataset.reached = String(reached);
+        if (label && label.dataset.show !== show) label.dataset.show = show;
       });
 
       // Les icônes surfent sur la vague et suivent sa pente.
@@ -213,19 +255,39 @@ export default function Timeline() {
     );
     io.observe(section);
 
+    // L'étape la plus proche du curseur s'allume.
     const onMove = (e: PointerEvent) => {
-      if (activeRef.current !== null) return;
       const rect = scroller.getBoundingClientRect();
-      pointer.targetX = (e.clientX - rect.left + scroller.scrollLeft) / sx;
-      pointer.targetAmp = 12;
+      const x = (e.clientX - rect.left + scroller.scrollLeft) / sx;
+      let nearest: number | null = null;
+      let best = 45;
+      steps.forEach((step, i) => {
+        const d = Math.abs(step.x - x);
+        if (d < best) {
+          best = d;
+          nearest = i;
+        }
+      });
+      if (nearest !== activeRef.current) {
+        activeRef.current = nearest;
+        setActive(nearest);
+        if (nearest !== null) setExplored(true);
+      }
+      if (nearest === null) {
+        pointer.targetX = x;
+        pointer.targetAmp = 12;
+      }
     };
     const onLeave = () => {
+      activeRef.current = null;
+      setActive(null);
       pointer.targetAmp = 0;
     };
     const stopAutoPan = () => {
       userPanned = true;
     };
     scroller.addEventListener("pointermove", onMove);
+    scroller.addEventListener("pointerdown", onMove);
     scroller.addEventListener("pointerleave", onLeave);
     scroller.addEventListener("touchstart", stopAutoPan, { passive: true });
     scroller.addEventListener("wheel", stopAutoPan, { passive: true });
@@ -235,6 +297,7 @@ export default function Timeline() {
       ro.disconnect();
       io.disconnect();
       scroller.removeEventListener("pointermove", onMove);
+      scroller.removeEventListener("pointerdown", onMove);
       scroller.removeEventListener("pointerleave", onLeave);
       scroller.removeEventListener("touchstart", stopAutoPan);
       scroller.removeEventListener("wheel", stopAutoPan);
@@ -245,7 +308,9 @@ export default function Timeline() {
     <section ref={sectionRef} aria-label="Parcours">
       <div
         ref={scrollerRef}
-        className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className={`overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
+          active !== null ? "cursor-pointer" : ""
+        }`}
       >
         <div className="relative min-w-[1200px]" style={{ height: HEIGHT }}>
           <svg ref={svgRef} aria-hidden className="absolute inset-0 h-full w-full overflow-visible">
@@ -253,7 +318,7 @@ export default function Timeline() {
               <linearGradient id="life-progress" ref={gradientRef} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1" y2="0">
                 <stop offset="0" stopColor="var(--color-line)" />
                 <stop offset="0.55" stopColor="var(--color-ink)" />
-                <stop offset="1" stopColor="var(--color-flame)" />
+                <stop offset="1" stopColor="var(--color-morpho)" />
               </linearGradient>
             </defs>
 
@@ -276,7 +341,7 @@ export default function Timeline() {
                 stroke="var(--color-ink)"
                 strokeWidth={0.75}
                 strokeDasharray="2 3"
-                className="opacity-0 transition-opacity duration-700 data-[reached=true]:opacity-25"
+                className="opacity-0 transition-opacity duration-300 data-[show=true]:opacity-30"
               />
             ))}
 
@@ -298,22 +363,26 @@ export default function Timeline() {
                 ref={(el) => {
                   dotRefs.current[i] = el;
                 }}
-                r={active === i ? 4.5 : 2.5}
-                fill={active === i ? "var(--color-flame)" : "var(--color-ink)"}
+                r={active === i ? 4.5 : step.kind === "life" ? 3 : 2.5}
+                fill={
+                  active === i ? "var(--color-morpho)" : step.kind === "life" ? "var(--color-bone)" : "var(--color-ink)"
+                }
+                stroke={step.kind === "life" ? "var(--color-ink)" : "none"}
+                strokeWidth={1.2}
                 className="opacity-0 transition-[opacity,r,fill] duration-500 data-[reached=true]:opacity-100"
               />
             ))}
 
             <g ref={headRef} style={{ opacity: 0 }}>
-              <circle ref={rippleRef} r={4} fill="none" stroke="var(--color-flame)" strokeWidth={1} />
-              <circle r={7} fill="var(--color-flame)" opacity={0.18} />
-              <circle r={3.5} fill="var(--color-flame)" />
+              <circle ref={rippleRef} r={4} fill="none" stroke="var(--color-morpho)" strokeWidth={1} />
+              <circle r={7} fill="var(--color-morpho)" opacity={0.18} />
+              <circle r={3.5} fill="var(--color-morpho)" />
             </g>
           </svg>
 
           <span
             ref={todayRef}
-            className="pointer-events-none absolute -translate-x-1/2 font-mono text-[10px] font-bold uppercase tracking-wider text-flame opacity-0 transition-opacity duration-700 data-[reached=true]:opacity-100"
+            className="pointer-events-none absolute -translate-x-1/2 font-mono text-[10px] font-bold uppercase tracking-wider text-morpho opacity-0 transition-opacity duration-700 data-[reached=true]:opacity-100"
           >
             aujourd’hui
           </span>
@@ -326,18 +395,16 @@ export default function Timeline() {
                   labelRefs.current[i] = el;
                 }}
                 tabIndex={0}
-                onMouseEnter={() => setActive(i)}
-                onMouseLeave={() => setActive(null)}
                 onFocus={() => setActive(i)}
                 onBlur={() => setActive(null)}
-                className={`absolute flex cursor-default flex-col gap-px whitespace-nowrap text-xs opacity-0 outline-none transition-[opacity,transform] duration-700 ease-out data-[reached=true]:translate-y-0 data-[reached=true]:opacity-100 ${
+                className={`pointer-events-none absolute flex flex-col gap-px whitespace-nowrap text-xs opacity-0 outline-none transition-[opacity,transform] duration-300 ease-out data-[show=true]:translate-y-0 data-[show=true]:opacity-100 ${
                   isAbove(step) ? "translate-y-2" : "-translate-y-2"
                 }`}
                 style={{ left: `${(step.x / DESIGN_WIDTH) * 100}%`, top: step.y }}
               >
                 <span
                   className={`font-mono font-bold uppercase transition-colors duration-300 ${
-                    active === i ? "text-flame" : ""
+                    active === i ? "text-morpho" : ""
                   }`}
                 >
                   {step.title}
@@ -353,6 +420,15 @@ export default function Timeline() {
           </ol>
         </div>
       </div>
+      <p
+        aria-hidden
+        className={`mt-1 text-center font-mono text-[10px] uppercase tracking-widest transition-opacity duration-700 ${
+          explored ? "opacity-0" : "opacity-50"
+        }`}
+      >
+        <span className="[@media(hover:none)]:hidden">Survolez la vague pour découvrir mon parcours</span>
+        <span className="hidden [@media(hover:none)]:inline">Touchez la vague pour découvrir mon parcours</span>
+      </p>
     </section>
   );
 }

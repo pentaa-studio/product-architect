@@ -20,7 +20,7 @@ const anonymousPro = Anonymous_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Benjamin Arthuys — Intelligence créative",
+  title: "Benjamin Arthuys — Product Architect & formateur IA",
   description:
     "L’IA redéfinit les règles de la créativité. Je vous forme à l’intelligence créative et je code pour vous.",
 };
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-bg="night" suppressHydrationWarning>
       <body
         className={`${figtree.variable} ${abel.variable} ${anonymousPro.variable} font-sans antialiased`}
       >
