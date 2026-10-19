@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sand: #e4dacd;
+  --color-cream: #f3e4ce;
+  --color-line: #cdbaa4;
+  --color-ink: #2e211c;
+  --color-flame: #e95330;
+  --color-flame-light: #ff8265;
+  --color-snow: #fef3ee;
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-abel);
+  --font-mono: var(--font-anonymous-pro);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-sand);
+  color: var(--color-ink);
+}
