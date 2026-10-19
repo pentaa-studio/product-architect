@@ -2,21 +2,22 @@
 
 import { useState } from "react";
 import Magnetic from "@/components/motion/Magnetic";
+import { NIVEAUX, PROFILS } from "@/content/candidature";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 // La candidature se lit comme une lettre : on remplit les blancs d'une phrase.
 
 const profils = [
-  { value: "J’ai une idée de produit ou de projet", label: "une idée à construire" },
-  { value: "Je n’ai pas encore d’idée, je veux trouver la mienne", label: "pas encore d’idée" },
-  { value: "Je veux faire monter mon équipe en compétence", label: "une équipe à embarquer" },
+  { value: PROFILS[0], label: "une idée à construire" },
+  { value: PROFILS[1], label: "pas encore d’idée" },
+  { value: PROFILS[2], label: "une équipe à embarquer" },
 ];
 
 const niveaux = [
-  { value: "Je découvre", label: "je découvre" },
-  { value: "J’utilise ChatGPT ou Claude au quotidien", label: "je l’utilise au quotidien" },
-  { value: "Je construis déjà avec l’IA", label: "je construis déjà avec" },
+  { value: NIVEAUX[0], label: "je découvre" },
+  { value: NIVEAUX[1], label: "je l’utilise au quotidien" },
+  { value: NIVEAUX[2], label: "je construis déjà avec" },
 ];
 
 function Blank({
