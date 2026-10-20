@@ -16,133 +16,192 @@
       html, body { height: 100%; }
 
       body {
-        display: grid;
-        place-items: center;
         background: #fff;
         color: #000;
         font-family: "Michroma", "Helvetica Neue", Arial, sans-serif;
         overflow: hidden;
-        -webkit-font-smoothing: antialiased;
+        touch-action: manipulation;
       }
 
-      /* Un mot-symbole très espacé, révélé lentement comme un logo de calandre. */
+      canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      /* Le mot reste lisible pour les lecteurs d'écran et sans JavaScript. */
       h1 {
-        --track: 0.42em;
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
         font-size: clamp(1.4rem, 5.2vw, 4.25rem);
         font-weight: 400;
-        letter-spacing: var(--track);
-        /* compense l'espace ajouté après la dernière lettre pour un centrage optique parfait */
-        margin-right: calc(-1 * var(--track));
-        line-height: 1;
-        white-space: nowrap;
-        opacity: 0;
-        animation: reveal 2.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        letter-spacing: 0.42em;
+        text-indent: 0.42em;
       }
 
-      @keyframes reveal {
-        from { opacity: 0; letter-spacing: 1.1em; margin-right: -1.1em; }
-        to { opacity: 1; letter-spacing: var(--track); margin-right: calc(-1 * var(--track)); }
-      }
-
-
-      /* Survol : un reflet chromé suit le curseur, les lettres se soulèvent et s'écartent. */
-      .word {
-        position: relative;
-        display: inline-flex;
-        --mx: -9999px;
-        --on: 0;
-      }
-
-      .word span {
-        display: inline-block;
-        will-change: transform;
-        color: transparent;
-        background-color: #000;
-        background-image: linear-gradient(100deg, transparent 0%, #5a5a5a 36%, #e2e2e2 50%, #5a5a5a 64%, transparent 100%);
-        background-repeat: no-repeat;
-        background-size: 150px 100%;
-        background-position: calc(var(--lx, -9999px) - 75px) 0;
-        -webkit-background-clip: text;
-        background-clip: text;
-      }
-
-      .word::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: var(--track);
-        bottom: -0.55em;
-        height: 1px;
-        background: #000;
-        transform-origin: var(--mx) 50%;
-        transform: scaleX(var(--line, 0));
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        h1 { animation: none; opacity: 1; }
+      .js h1 {
+        clip-path: inset(50%);
       }
     </style>
   </head>
   <body>
-    <h1 aria-label="ARTHUYS"><span class="word" aria-hidden="true"><span>A</span><span>R</span><span>T</span><span>H</span><span>U</span><span>Y</span><span>S</span></span></h1>
-
+    <h1>ARTHUYS</h1>
+    <canvas aria-hidden="true"></canvas>
     <script>
-      (() => {
-        const word = document.querySelector(".word");
-        const letters = [...word.querySelectorAll("span")];
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      document.documentElement.classList.add("js");
 
-        // Position du reflet (lissée) et intensité de l'effet.
-        let target = { x: -400, on: 0 };
-        const cur = { x: -400, on: 0 };
-        let sweep = null;
+      (async () => {
+        const WORD = "ARTHUYS";
+        const canvas = document.querySelector("canvas");
+        const ctx = canvas.getContext("2d");
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        const local = (clientX) => clientX - word.getBoundingClientRect().left;
+        try {
+          await document.fonts.load('400 64px "Michroma"');
+        } catch {}
 
-        addEventListener("pointermove", (e) => {
-          if (e.pointerType !== "mouse") return;
-          const r = word.getBoundingClientRect();
-          const dy = Math.abs(e.clientY - (r.top + r.height / 2));
-          const inX = e.clientX > r.left - r.height * 2 && e.clientX < r.right + r.height * 2;
-          target.x = local(e.clientX);
-          target.on = inX ? Math.max(0, 1 - dy / (r.height * 2.2)) : 0;
-        });
-        document.addEventListener("pointerleave", () => (target.on = 0));
+        let W = 0, H = 0, dpr = 1, particles = [], size = 1.6;
 
-        // Au toucher : un reflet traverse tout le mot.
-        addEventListener("pointerdown", (e) => {
-          if (e.pointerType === "mouse") return;
-          sweep = performance.now();
-        });
+        // Échantillonne le mot dessiné hors écran pour en faire des particules.
+        function build() {
+          dpr = Math.min(devicePixelRatio || 1, 2);
+          W = innerWidth;
+          H = innerHeight;
+          canvas.width = W * dpr;
+          canvas.height = H * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const loop = (now) => {
-          const r = word.getBoundingClientRect();
-          if (sweep !== null) {
-            const t = Math.min(1, (now - sweep) / 1400);
-            const ease = 1 - Math.pow(1 - t, 3);
-            target.x = -80 + ease * (r.width + 160);
-            target.on = t < 1 ? Math.sin(t * Math.PI) : 0;
-            if (t >= 1) sweep = null;
-          }
-          cur.x += (target.x - cur.x) * 0.14;
-          cur.on += (target.on - cur.on) * 0.08;
+          const fontSize = Math.max(22, Math.min(W * 0.052, 68)) * (W < 600 ? 1.15 : 1);
+          const track = fontSize * 0.42;
+          const off = document.createElement("canvas");
+          off.width = W;
+          off.height = H;
+          const o = off.getContext("2d");
+          o.font = `400 ${fontSize}px Michroma, "Helvetica Neue", Arial, sans-serif`;
+          o.textBaseline = "middle";
+          o.fillStyle = "#000";
 
-          word.style.setProperty("--mx", cur.x + "px");
-          word.style.setProperty("--line", cur.on.toFixed(3));
-
-          const em = parseFloat(getComputedStyle(word).fontSize);
-          letters.forEach((el) => {
-            const center = el.offsetLeft + el.offsetWidth / 2;
-            const d = (center - cur.x) / (em * 1.4);
-            const f = Math.exp(-d * d) * cur.on;
-            const lift = -f * em * 0.16;
-            const push = Math.tanh(d) * cur.on * em * 0.14 * (1 - Math.exp(-d * d) * 0.4);
-            el.style.transform = `translate(${push.toFixed(2)}px, ${lift.toFixed(2)}px) scale(${(1 + f * 0.06).toFixed(3)})`;
-            el.style.setProperty("--lx", (cur.on > 0.02 ? cur.x - el.offsetLeft : -9999) + "px");
+          const widths = [...WORD].map((c) => o.measureText(c).width);
+          const total = widths.reduce((a, b) => a + b, 0) + track * (WORD.length - 1);
+          let x = (W - total) / 2;
+          [...WORD].forEach((c, i) => {
+            o.fillText(c, x, H / 2);
+            x += widths[i] + track;
           });
-          requestAnimationFrame(loop);
-        };
-        requestAnimationFrame(loop);
+
+          const step = W < 600 ? 2 : fontSize > 50 ? 3 : 2;
+          size = step * 0.9;
+          const data = o.getImageData(0, 0, W, H).data;
+          const prev = particles;
+          particles = [];
+          for (let y = 0; y < H; y += step) {
+            for (let x = 0; x < W; x += step) {
+              if (data[(y * W + x) * 4 + 3] > 128) {
+                const p = prev[particles.length];
+                particles.push({
+                  hx: x,
+                  hy: y,
+                  x: p ? p.x : Math.random() * W,
+                  y: p ? p.y : Math.random() * H,
+                  vx: 0,
+                  vy: 0,
+                  // Chaque particule a son propre poids : l'explosion n'est pas uniforme.
+                  m: 0.6 + Math.random() * 0.9,
+                  delay: Math.random() * 0.5,
+                });
+              }
+            }
+          }
+        }
+
+        build();
+        let resizeTimer;
+        addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(build, 120);
+        });
+
+        // Curseur : position et vitesse, pour une explosion proportionnelle au geste.
+        const mouse = { x: -9999, y: -9999, px: -9999, py: -9999, speed: 0 };
+        addEventListener("pointermove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+        });
+        document.addEventListener("pointerleave", () => {
+          mouse.x = mouse.y = -9999;
+        });
+
+        function blast(cx, cy, power) {
+          for (const p of particles) {
+            const dx = p.x - cx;
+            const dy = p.y - cy;
+            const d = Math.hypot(dx, dy) || 1;
+            const f = (power / (d * 0.04 + 1)) / p.m;
+            const a = Math.atan2(dy, dx) + (Math.random() - 0.5) * 0.9;
+            p.vx += Math.cos(a) * f * (0.5 + Math.random());
+            p.vy += Math.sin(a) * f * (0.5 + Math.random());
+          }
+        }
+
+        addEventListener("pointerdown", (e) => {
+          if (!reduce) blast(e.clientX, e.clientY, 46);
+        });
+
+        const start = performance.now();
+
+        function frame(now) {
+          const t = (now - start) / 1000;
+          const dx0 = mouse.x - mouse.px;
+          const dy0 = mouse.y - mouse.py;
+          const moved = mouse.px > -9000 && mouse.x > -9000 ? Math.hypot(dx0, dy0) : 0;
+          mouse.speed += (moved - mouse.speed) * 0.35;
+          mouse.px = mouse.x;
+          mouse.py = mouse.y;
+
+          const R = Math.max(80, Math.min(W, H) * 0.14);
+          const push = 3.2 + Math.min(mouse.speed, 60) * 0.35;
+
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = "#000";
+
+          for (const p of particles) {
+            // Retour élastique vers la lettre, après un départ décalé pour l'apparition.
+            const intro = reduce ? 1 : Math.min(1, Math.max(0, (t - p.delay) / 1.2));
+            const k = 0.02 + 0.05 * intro * intro;
+            p.vx += (p.hx - p.x) * k;
+            p.vy += (p.hy - p.y) * k;
+
+            // Le curseur fait éclater les lettres qu'il traverse.
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < R * R) {
+              const d = Math.sqrt(d2) || 1;
+              const f = ((1 - d / R) ** 2 * push) / p.m;
+              p.vx += (dx / d) * f + (Math.random() - 0.5) * f * 0.8;
+              p.vy += (dy / d) * f + (Math.random() - 0.5) * f * 0.8;
+            }
+
+            p.vx *= 0.86;
+            p.vy *= 0.86;
+            p.x += p.vx;
+            p.y += p.vy;
+
+            // Les particules éloignées de leur lettre pâlissent un peu.
+            const away = Math.min(1, Math.hypot(p.x - p.hx, p.y - p.hy) / 120);
+            ctx.globalAlpha = 1 - away * 0.55;
+            ctx.fillRect(p.x, p.y, size, size);
+          }
+          ctx.globalAlpha = 1;
+          requestAnimationFrame(frame);
+        }
+
+        if (reduce) particles.forEach((p) => ((p.x = p.hx), (p.y = p.hy)));
+        requestAnimationFrame(frame);
       })();
     </script>
   </body>
