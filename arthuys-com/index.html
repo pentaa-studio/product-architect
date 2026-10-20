@@ -40,8 +40,42 @@
       }
 
       @keyframes reveal {
-        from { opacity: 0; letter-spacing: 1.1em; margin-right: -1.1em; filter: blur(6px); }
-        to { opacity: 1; letter-spacing: var(--track); margin-right: calc(-1 * var(--track)); filter: blur(0); }
+        from { opacity: 0; letter-spacing: 1.1em; margin-right: -1.1em; }
+        to { opacity: 1; letter-spacing: var(--track); margin-right: calc(-1 * var(--track)); }
+      }
+
+
+      /* Survol : un reflet chromé suit le curseur, les lettres se soulèvent et s'écartent. */
+      .word {
+        position: relative;
+        display: inline-flex;
+        --mx: -9999px;
+        --on: 0;
+      }
+
+      .word span {
+        display: inline-block;
+        will-change: transform;
+        color: transparent;
+        background-color: #000;
+        background-image: linear-gradient(100deg, transparent 0%, #5a5a5a 36%, #e2e2e2 50%, #5a5a5a 64%, transparent 100%);
+        background-repeat: no-repeat;
+        background-size: 150px 100%;
+        background-position: calc(var(--lx, -9999px) - 75px) 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .word::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: var(--track);
+        bottom: -0.55em;
+        height: 1px;
+        background: #000;
+        transform-origin: var(--mx) 50%;
+        transform: scaleX(var(--line, 0));
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -50,6 +84,66 @@
     </style>
   </head>
   <body>
-    <h1>ARTHUYS</h1>
+    <h1 aria-label="ARTHUYS"><span class="word" aria-hidden="true"><span>A</span><span>R</span><span>T</span><span>H</span><span>U</span><span>Y</span><span>S</span></span></h1>
+
+    <script>
+      (() => {
+        const word = document.querySelector(".word");
+        const letters = [...word.querySelectorAll("span")];
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        // Position du reflet (lissée) et intensité de l'effet.
+        let target = { x: -400, on: 0 };
+        const cur = { x: -400, on: 0 };
+        let sweep = null;
+
+        const local = (clientX) => clientX - word.getBoundingClientRect().left;
+
+        addEventListener("pointermove", (e) => {
+          if (e.pointerType !== "mouse") return;
+          const r = word.getBoundingClientRect();
+          const dy = Math.abs(e.clientY - (r.top + r.height / 2));
+          const inX = e.clientX > r.left - r.height * 2 && e.clientX < r.right + r.height * 2;
+          target.x = local(e.clientX);
+          target.on = inX ? Math.max(0, 1 - dy / (r.height * 2.2)) : 0;
+        });
+        document.addEventListener("pointerleave", () => (target.on = 0));
+
+        // Au toucher : un reflet traverse tout le mot.
+        addEventListener("pointerdown", (e) => {
+          if (e.pointerType === "mouse") return;
+          sweep = performance.now();
+        });
+
+        const loop = (now) => {
+          const r = word.getBoundingClientRect();
+          if (sweep !== null) {
+            const t = Math.min(1, (now - sweep) / 1400);
+            const ease = 1 - Math.pow(1 - t, 3);
+            target.x = -80 + ease * (r.width + 160);
+            target.on = t < 1 ? Math.sin(t * Math.PI) : 0;
+            if (t >= 1) sweep = null;
+          }
+          cur.x += (target.x - cur.x) * 0.14;
+          cur.on += (target.on - cur.on) * 0.08;
+
+          word.style.setProperty("--mx", cur.x + "px");
+          word.style.setProperty("--line", cur.on.toFixed(3));
+
+          const em = parseFloat(getComputedStyle(word).fontSize);
+          letters.forEach((el) => {
+            const center = el.offsetLeft + el.offsetWidth / 2;
+            const d = (center - cur.x) / (em * 1.4);
+            const f = Math.exp(-d * d) * cur.on;
+            const lift = -f * em * 0.16;
+            const push = Math.tanh(d) * cur.on * em * 0.14 * (1 - Math.exp(-d * d) * 0.4);
+            el.style.transform = `translate(${push.toFixed(2)}px, ${lift.toFixed(2)}px) scale(${(1 + f * 0.06).toFixed(3)})`;
+            el.style.setProperty("--lx", (cur.on > 0.02 ? cur.x - el.offsetLeft : -9999) + "px");
+          });
+          requestAnimationFrame(loop);
+        };
+        requestAnimationFrame(loop);
+      })();
+    </script>
   </body>
 </html>
