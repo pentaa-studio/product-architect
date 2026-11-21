@@ -49,12 +49,13 @@ function blocks(body) {
   return marked
     .lexer(body)
     .filter((t) => !["space", "hr"].includes(t.type))
-    .map((t) => plain(t.type === "blockquote" ? t.text : t.raw))
-    .filter(Boolean);
+    .map((t) => ({ text: plain(t.type === "blockquote" ? t.text : t.raw), heading: t.type === "heading" }))
+    .filter((b) => b.text);
 }
 
 async function speak(text, previous, next) {
-  const id = crypto.createHash("sha1").update(JSON.stringify([VOICE, MODEL, FORMAT, text, previous, next])).digest("hex");
+  // Clé sur le texte seul : modifier un paragraphe ne fait pas régénérer ses voisins.
+  const id = crypto.createHash("sha1").update(JSON.stringify([VOICE, MODEL, FORMAT, text])).digest("hex");
   const cached = path.join(CACHE, `${id}.json`);
   if (fs.existsSync(cached)) {
     const c = JSON.parse(fs.readFileSync(cached, "utf8"));
@@ -83,12 +84,13 @@ async function speak(text, previous, next) {
 }
 
 async function generate(post) {
-  // Le titre d'abord, puis les blocs, regroupés en requêtes de MAX_CHARS caractères.
-  const items = [{ block: -1, text: post.title + "." }, ...blocks(post.body).map((text, block) => ({ block, text }))];
+  // Le titre d'abord, puis les blocs, regroupés en requêtes d'au plus MAX_CHARS caractères.
+  // Chaque titre de section ouvre une nouvelle requête : une correction ne décale que sa section.
+  const items = [{ block: -1, text: post.title + ".", heading: true }, ...blocks(post.body).map((b, block) => ({ block, ...b }))];
   const groups = [];
   for (const item of items) {
     const g = groups.at(-1);
-    if (g && g.reduce((n, i) => n + i.text.length + 2, 0) + item.text.length <= MAX_CHARS) g.push(item);
+    if (g && !item.heading && g.reduce((n, i) => n + i.text.length + 2, 0) + item.text.length <= MAX_CHARS) g.push(item);
     else groups.push([item]);
   }
 
