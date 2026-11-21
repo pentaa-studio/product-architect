@@ -33,11 +33,16 @@ export function aggregate(act, votes) {
     out.answered = act.questions.map((_, qi) => votes.filter(v => Number.isInteger(v.a?.[qi])).length);
   } else if (act.kind === 'word') {
     const m = new Map();
-    for (const v of votes) for (const w of (v.a || [])) {
-      const k = norm(w); if (!k) continue;
-      const e = m.get(k) || { k, n: 0, forms: {} };
-      e.n++; const f = String(w).trim().toLowerCase(); e.forms[f] = (e.forms[f] || 0) + 1;
-      m.set(k, e);
+    for (const v of votes) {
+      const seen = new Set();
+      for (const w of (v.a || [])) {
+        // Un même mot n'est compté qu'une fois par personne.
+        const k = norm(w); if (!k || seen.has(k)) continue;
+        seen.add(k);
+        const e = m.get(k) || { k, n: 0, forms: {} };
+        e.n++; const f = String(w).trim().toLowerCase(); e.forms[f] = (e.forms[f] || 0) + 1;
+        m.set(k, e);
+      }
     }
     out.words = [...m.values()].map(e => ({ w: Object.entries(e.forms).sort((a, b) => b[1] - a[1])[0][0], n: e.n }))
       .sort((a, b) => b.n - a.n).slice(0, 60);
