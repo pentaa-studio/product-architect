@@ -141,6 +141,9 @@ export default function Home() {
             <a href="#accompagnement" className="hidden hover:opacity-60 sm:inline">
               Accompagnement
             </a>
+            <Link href="/blog" className="hidden hover:opacity-60 sm:inline">
+              Réflexions
+            </Link>
             <a href="#candidater" className="rounded-full border border-white px-4 py-2 hover:bg-white hover:text-black">
               Candidater
             </a>
