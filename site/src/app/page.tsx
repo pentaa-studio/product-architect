@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import ApplicationForm from "@/components/ApplicationForm";
+import { formatDate, getPosts } from "@/lib/blog";
 import Reveal from "@/components/Reveal";
 import Timeline from "@/components/Timeline";
 import Chapters from "@/components/motion/Chapters";
@@ -118,6 +120,7 @@ function Marquee({ items, reverse = false, className = "" }: { items: string[]; 
 }
 
 export default function Home() {
+  const posts = getPosts();
   return (
     <>
       <Motion />
@@ -315,6 +318,35 @@ export default function Home() {
           <div className="mt-8 flex flex-col gap-2 text-[clamp(3rem,8vw,7.5rem)] font-extrabold uppercase leading-none tracking-tight">
             <Marquee items={crafts} />
             <Marquee items={tools} reverse className="text-outline" />
+          </div>
+        </section>
+
+        {/* Réflexions */}
+        <section id="reflexions" data-bg="bone" className="px-[6vw] pb-[16vh]">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <Kicker>Réflexions partagées</Kicker>
+              <h2 className="mt-6 text-[clamp(2.5rem,6vw,6rem)] font-extrabold leading-[0.95] tracking-tight">
+                Je <span className="text-morpho">partage</span>.
+              </h2>
+            </div>
+            <Link href="/blog" className="font-mono text-xs uppercase tracking-[0.3em] hover:text-morpho">
+              Tous les articles →
+            </Link>
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {posts.slice(0, 3).map((post, i) => (
+              <Reveal key={post.slug} delay={i * 120}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="hairline group flex h-full flex-col justify-between gap-10 rounded-3xl border p-8 transition-colors duration-500 hover:bg-ink hover:text-paper"
+                >
+                  <p className="font-mono text-xs uppercase tracking-[0.2em] opacity-60">{formatDate(post.date)}</p>
+                  <h3 className="text-2xl font-extrabold leading-tight tracking-tight">{post.title}</h3>
+                  <span className="font-mono text-xs uppercase tracking-[0.2em] text-morpho group-hover:text-imago">Lire →</span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
         </section>
 

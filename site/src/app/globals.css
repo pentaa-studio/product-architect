@@ -116,3 +116,20 @@ html.lenis body {
   0% { transform: translateY(-100%); }
   100% { transform: translateY(200%); }
 }
+
+/* Articles du blog : une lecture confortable. */
+.prose-ba { font-size: 1.15rem; line-height: 1.75; }
+.prose-ba > * + * { margin-top: 1.1em; }
+.prose-ba h2 { margin-top: 2.2em; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+.prose-ba h3 { margin-top: 1.8em; font-size: 1.4rem; font-weight: 800; line-height: 1.25; }
+.prose-ba h4 { margin-top: 1.5em; font-size: 1.15rem; font-weight: 700; }
+.prose-ba h2 + *, .prose-ba h3 + *, .prose-ba h4 + * { margin-top: 0.6em; }
+.prose-ba strong { font-weight: 700; }
+.prose-ba a { color: var(--color-morpho); text-decoration: underline; text-underline-offset: 3px; }
+.prose-ba ul, .prose-ba ol { padding-left: 1.3em; }
+.prose-ba ul { list-style: disc; }
+.prose-ba ol { list-style: decimal; }
+.prose-ba li + li { margin-top: 0.35em; }
+.prose-ba li::marker { color: var(--color-morpho); }
+.prose-ba hr { margin: 2.5em 0; border: 0; border-top: 1px solid var(--color-line); }
+.prose-ba blockquote { border-left: 3px solid var(--color-morpho); padding-left: 1.2em; font-style: italic; }
