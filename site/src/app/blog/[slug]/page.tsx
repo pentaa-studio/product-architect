@@ -40,8 +40,9 @@ export default async function Article({ params }: Props) {
             ))}
           </div>
           <h1 className="mt-6 text-[clamp(2.25rem,5vw,3.75rem)] font-extrabold leading-[1.02] tracking-tight">{post.title}</h1>
-          <p className="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-mist">
-            {formatDate(post.date)} · {readingTime(post.body)} min de lecture · Pentaa Studio
+          {post.excerpt && <p className="mt-5 font-display text-2xl italic text-mist">{post.excerpt}</p>}
+          <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-mist">
+            {formatDate(post.date)} · {readingTime(post.body)} min de lecture
           </p>
         </header>
 

@@ -22,7 +22,7 @@ export default function BlogIndex() {
         </h1>
 
         {first && (
-          <Link href={`/blog/${first.slug}`} className="group mt-16 grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-center">
+          <Link href={`/blog/${first.slug}`} className={`group mt-16 grid gap-8 md:items-center ${first.cover ? "md:grid-cols-[1.2fr_1fr]" : "hairline max-w-[860px] rounded-3xl border p-10 transition-colors hover:border-morpho"}`}>
             {first.cover && (
               <div className="aspect-[16/10] overflow-hidden rounded-3xl bg-paper">
                 <img
