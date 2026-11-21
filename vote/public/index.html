@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Music Moods · En direct</title>
+<meta name="theme-color" content="#0b0a12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel&family=Anonymous+Pro:wght@400;700&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/style.css">
+<style>
+body{min-height:100dvh}
+.app{position:relative;z-index:1;max-width:520px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;
+  padding:calc(18px + env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}
+header .who{display:flex;align-items:center;gap:8px;color:var(--mist)}
+header .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;border:1px solid var(--line);color:var(--bone)}
+header .chip:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--tc,var(--mist))}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:28px 0}
+h1{font-size:clamp(30px,8vw,40px);line-height:1.05;margin:0;font-weight:800;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(22px,6vw,28px);line-height:1.15;margin:0;font-weight:700;text-wrap:balance}
+.lead{font-size:17px;line-height:1.5;color:var(--mist);margin:0}
+label.f{display:grid;gap:8px;font-size:12px}
+.inp{width:100%;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--night2);color:var(--bone);font-size:18px;outline:none}
+.inp:focus{border-color:var(--violet)}
+.teams{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.team{padding:16px 12px;border-radius:14px;border:1px solid var(--line);background:var(--night2);font-weight:700;font-size:17px;display:flex;align-items:center;gap:10px;transition:.15s}
+.team:before{content:"";width:12px;height:12px;border-radius:50%;background:var(--tc)}
+.team[aria-pressed=true]{border-color:var(--tc);box-shadow:0 0 0 1px var(--tc) inset;background:color-mix(in srgb,var(--tc) 12%,var(--night2))}
+.cta{width:100%;padding:18px;border-radius:99px;background:var(--bone);color:var(--night);font-weight:800;font-size:18px;transition:.15s}
+.cta:disabled{opacity:.35}
+.cta:active{transform:scale(.98)}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;padding:18px 18px;border-radius:16px;border:1px solid var(--line);background:var(--night2);font-size:18px;font-weight:600;line-height:1.3;display:flex;gap:14px;align-items:flex-start;transition:.12s}
+.opt b{font-family:"Anonymous Pro",monospace;color:var(--mist);font-weight:700;min-width:18px}
+.opt:active{transform:scale(.98)}
+.opt.sel{border-color:var(--imago);background:color-mix(in srgb,var(--imago) 14%,var(--night2))}
+.opt.sel b{color:var(--imago)}
+.progress{display:flex;gap:5px}
+.progress i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.progress i.on{background:var(--iri)}
+.center{text-align:center;align-items:center}
+.big{font-size:64px;font-weight:800;line-height:1}
+.words{display:flex;flex-wrap:wrap;gap:8px}
+.words span{padding:8px 14px;border-radius:99px;background:var(--night2);border:1px solid var(--line);font-weight:600}
+.status{min-height:18px;font-size:12px;text-align:center}
+.err{color:#ff8a8a}
+.foot{font-size:11px;text-align:center;color:var(--mist)}
+.link{color:var(--mist);text-decoration:underline;font-size:13px}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="app">
+  <header>
+    <span class="mono">Music Moods · <span class="iri">en direct</span></span>
+    <span class="who" id="who"></span>
+  </header>
+  <main id="view" aria-live="polite"></main>
+  <div class="status mono" id="status"></div>
+</div>
+<script>
+const TEAMS=['Jazz','Rock','Électro','Hip-hop'];
+const room=(location.pathname.replace(/^\/+|\/+$/g,'')||new URLSearchParams(location.search).get('r')||'s1').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,20)||'s1';
+const $=s=>document.querySelector(s), view=$('#view'), statusEl=$('#status');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+let me=LS.get('mmv-me',null);
+if(!me||!me.pid){me={pid:Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4),name:'',team:''};}
+let state=null, answers={}, lastKey='', mineCache={};
+const ansKey=a=>`mmv-a-${room}-${a}-${state?.run||0}`;
+
+function renderWho(){
+  $('#who').innerHTML=me.name?`<span class="chip t-${esc(me.team)}">${esc(me.name)} · ${esc(me.team)}</span>`:'';
+}
+
+/* ---------- Rejoindre ---------- */
+function join(){
+  let team=me.team||'';
+  view.innerHTML=`
+    <div style="display:grid;gap:12px"><h1>Bienvenue dans la séance</h1><p class="lead">Votre prénom et votre équipe, et c'est parti.</p></div>
+    <label class="f"><span class="mono muted">Prénom</span><input class="inp" id="nm" maxlength="24" autocomplete="given-name" value="${esc(me.name)}" placeholder="Camille"></label>
+    <div class="f" style="display:grid;gap:8px"><span class="mono muted" style="font-size:12px">Équipe</span>
+      <div class="teams">${TEAMS.map(t=>`<button class="team t-${t}" data-t="${t}" aria-pressed="${t===team}">${t}</button>`).join('')}</div></div>
+    <button class="cta" id="go" disabled>Rejoindre</button>`;
+  const nm=$('#nm'), go=$('#go');
+  const upd=()=>go.disabled=!(nm.value.trim()&&team);
+  nm.oninput=upd; upd();
+  view.querySelectorAll('.team').forEach(b=>b.onclick=()=>{team=b.dataset.t;view.querySelectorAll('.team').forEach(x=>x.setAttribute('aria-pressed',x===b));upd()});
+  go.onclick=()=>{me.name=nm.value.trim().slice(0,24);me.team=team;LS.set('mmv-me',me);renderWho();lastKey='';draw()};
+}
+
+/* ---------- Envoi avec reprise ---------- */
+let sending=0;
+async function send(actId,a){
+  sending++; statusEl.textContent='Envoi…'; statusEl.className='status mono muted';
+  for(let i=0;i<6;i++){
+    try{
+      const r=await fetch('/api/vote',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({r:room,act:actId,pid:me.pid,name:me.name,team:me.team,answers:a})});
+      if(r.ok){sending--; if(!sending){statusEl.textContent='Envoyé ✓';setTimeout(()=>{if(!sending)statusEl.textContent=''},1500)} return true}
+      if(r.status===409){sending--;statusEl.textContent='Le vote est fermé';statusEl.className='status mono err';return false}
+    }catch{}
+    await new Promise(r=>setTimeout(r,800*(i+1)));
+  }
+  sending--; statusEl.textContent='Connexion difficile, réessayez'; statusEl.className='status mono err'; return false;
+}
+
+/* ---------- Écrans ---------- */
+function waiting(msg){
+  view.className='center';
+  view.innerHTML=`<div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <h2>${msg||'Regardez l\'écran'}</h2><p class="lead">La prochaine question apparaîtra ici toute seule.</p>`;
+}
+
+function poll(act,closed){
+  view.className='';
+  const a=answers[act.id]||(answers[act.id]=LS.get(ansKey(act.id),[]));
+  const qi=a.length;
+  const N=act.questions.length;
+  if(closed&&act.kind!=='quiz') return waiting('Vote fermé, regardez l\'écran');
+  if(qi>=N){
+    if(act.kind==='quiz') return quizEnd(act,closed);
+    view.className='center';
+    view.innerHTML=`<div class="big iri">✓</div><h2>Merci, c'est envoyé</h2><p class="lead">Les résultats s'affichent à l'écran.</p>`;
+    return;
+  }
+  if(closed) return quizEnd(act,closed);
+  const q=act.questions[qi];
+  view.innerHTML=`
+    ${N>1?`<div class="progress">${act.questions.map((_,i)=>`<i class="${i<=qi?'on':''}"></i>`).join('')}</div>`:''}
+    <div style="display:grid;gap:10px">
+      <span class="mono muted" style="font-size:12px">${esc(act.title)}${N>1?` · ${qi+1} / ${N}`:''}</span>
+      <h2>${esc(q.q)}</h2>
+    </div>
+    <div class="opts">${q.o.map((o,i)=>`<button class="opt" data-i="${i}"><b>${'ABCDEF'[i]}</b><span>${esc(o)}</span></button>`).join('')}</div>`;
+  view.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
+    if(view.dataset.lock)return; view.dataset.lock=1;
+    b.classList.add('sel'); a[qi]=+b.dataset.i; LS.set(ansKey(act.id),a);
+    send(act.id,a.slice());
+    setTimeout(()=>{delete view.dataset.lock;draw(true)},act.kind==='quiz'?350:450);
+  });
+}
+
+async function quizEnd(act,closed){
+  view.className='center';
+  if(!closed){
+    view.innerHTML=`<div class="big iri">✓</div><h2>Réponses envoyées</h2><p class="lead">Votre score s'affichera ici quand le QCM sera fermé.</p>`;
+    return;
+  }
+  view.innerHTML=`<div class="eq"><i></i><i></i><i></i><i></i><i></i></div><h2>Calcul du score…</h2>`;
+  const k=act.id+state.run;
+  if(!mineCache[k]){try{const r=await fetch(`/api/results?r=${room}&act=${act.id}&me=${me.pid}`);mineCache[k]=(await r.json()).mine||'none'}catch{return}}
+  const m=mineCache[k];
+  if(m==='none'){view.innerHTML=`<h2>QCM fermé</h2><p class="lead">Pas de réponse enregistrée pour vous.</p>`;return}
+  view.innerHTML=`<span class="mono muted" style="font-size:12px">Votre score</span>
+    <div class="big"><span class="iri">${m.score}</span><span class="muted" style="font-size:32px"> / ${m.total}</span></div>
+    <p class="lead">${m.rank===1?'Meilleur score de la salle ! 3 points pour votre équipe.':`${m.rank}<sup>e</sup> sur ${m.of}`}</p>`;
+}
+
+function word(act,closed){
+  view.className='';
+  const key=ansKey(act.id);
+  const a=answers[act.id]||(answers[act.id]=LS.get(key,[]));
+  const max=act.max||3;
+  if(closed) return waiting('Nuage fermé, regardez l\'écran');
+  const done=LS.get(key+'-done',false);
+  if(a.length>=max||done){
+    view.className='center';
+    view.innerHTML=`<div class="big iri">✓</div><h2>Merci</h2><div class="words" style="justify-content:center">${a.map(w=>`<span>${esc(w)}</span>`).join('')}</div><p class="lead">Regardez le nuage se former à l'écran.</p>`;
+    return;
+  }
+  view.innerHTML=`
+    <div style="display:grid;gap:10px"><span class="mono muted" style="font-size:12px">Nuage de mots${max>1?` · ${a.length} / ${max}`:''}</span><h2>${esc(act.title)}</h2></div>
+    ${a.length?`<div class="words">${a.map(w=>`<span>${esc(w)}</span>`).join('')}</div>`:''}
+    <input class="inp" id="w" maxlength="30" placeholder="Un mot" autocomplete="off" enterkeyhint="send">
+    <button class="cta" id="sw" disabled>Envoyer</button>
+    ${a.length?`<button class="link" id="stop">J'ai fini</button>`:''}`;
+  const w=$('#w'), sw=$('#sw');
+  w.oninput=()=>sw.disabled=!w.value.trim();
+  const go=()=>{const v=w.value.trim().slice(0,30);if(!v)return;a.push(v);LS.set(key,a);send(act.id,a.slice());draw(true)};
+  sw.onclick=go; w.onkeydown=e=>{if(e.key==='Enter')go()};
+  const st=$('#stop'); if(st) st.onclick=()=>{LS.set(key+'-done',true);draw(true)};
+  setTimeout(()=>w.focus(),50);
+}
+
+function draw(force){
+  if(!me.name||!me.team) return join();
+  if(!state) return waiting('Connexion…');
+  const act=state.act, closed=state.phase==='closed';
+  const key=`${act?.id}|${state.phase}|${state.run}`;
+  if(!force&&key===lastKey) return;
+  if(document.activeElement&&document.activeElement.id==='w'&&!force&&lastKey.split('|')[0]===String(act?.id)&&!closed) return;
+  lastKey=key;
+  if(!act) return waiting();
+  if(act.kind==='word') return word(act,closed);
+  return poll(act,closed);
+}
+
+async function tick(){
+  try{
+    const r=await fetch(`/api/state?r=${room}&_=${Date.now()}`,{cache:'no-store'});
+    if(r.ok){state=await r.json(); if(statusEl.textContent==='Hors ligne')statusEl.textContent=''; draw();}
+  }catch{statusEl.textContent='Hors ligne';statusEl.className='status mono err'}
+  setTimeout(tick,document.hidden?5000:1800);
+}
+renderWho(); draw(); tick();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw()});
+</script>
+</body>
+</html>
