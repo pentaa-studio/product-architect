@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import BlogShell from "@/components/BlogShell";
 import { formatDate, getPosts, readingTime } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Réflexions · Benjamin Arthuys",
-  description: "Articles sur l'IA, le digital et les sites web pour les petites entreprises.",
+  description: "Mes réflexions sur l'IA, le produit et la création.",
 };
 
 export default function BlogIndex() {
-  const [first, ...rest] = getPosts();
+  const posts = getPosts();
+  if (posts.length === 0) notFound();
+  const [first, ...rest] = posts;
   return (
     <BlogShell>
       <main className="mx-auto max-w-[1100px] px-[6vw] pt-20 pb-28 md:px-6">

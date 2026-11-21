@@ -141,9 +141,11 @@ export default function Home() {
             <a href="#accompagnement" className="hidden hover:opacity-60 sm:inline">
               Accompagnement
             </a>
-            <Link href="/blog" className="hidden hover:opacity-60 sm:inline">
-              Réflexions
-            </Link>
+            {posts.length > 0 && (
+              <Link href="/blog" className="hidden hover:opacity-60 sm:inline">
+                Réflexions
+              </Link>
+            )}
             <a href="#candidater" className="rounded-full border border-white px-4 py-2 hover:bg-white hover:text-black">
               Candidater
             </a>
@@ -324,7 +326,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Réflexions */}
+        {/* Réflexions (affichée dès qu'il y a au moins un article) */}
+        {posts.length > 0 && (
         <section id="reflexions" data-bg="bone" className="px-[6vw] pb-[16vh]">
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -352,6 +355,7 @@ export default function Home() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Final */}
         <section id="candidater" data-bg="night" className="px-[6vw] pt-[22vh] pb-[12vh]">
