@@ -18,7 +18,7 @@ export default function BlogIndex() {
       <main className="mx-auto max-w-[1100px] px-[6vw] pt-20 pb-28 md:px-6">
         <p className="font-mono text-xs uppercase tracking-[0.3em] opacity-60">Réflexions partagées</p>
         <h1 className="mt-5 max-w-[16ch] text-[clamp(2.75rem,7vw,6rem)] font-extrabold leading-[0.92] tracking-tight">
-          Ce que j’apprends, <span className="text-morpho">je le partage.</span>
+          Ce que je comprends, <span className="text-morpho">je le partage.</span>
         </h1>
 
         {first && (
