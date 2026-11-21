@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ApplicationForm from "@/components/ApplicationForm";
 import Reveal from "@/components/Reveal";
 import Timeline from "@/components/Timeline";
@@ -201,8 +202,16 @@ export default function Home() {
               </p>
             </Reveal>
             <Reveal delay={150}>
-              <div className="relative size-40 overflow-hidden rounded-full bg-gradient-to-br from-morpho via-violet to-imago md:size-52">
-                <span className="absolute inset-0 flex items-center justify-center text-5xl font-extrabold text-paper">BA</span>
+              <div className="group relative size-48 rounded-full bg-gradient-to-br from-morpho via-violet to-imago p-[3px] md:size-64">
+                <div className="relative size-full overflow-hidden rounded-full bg-night">
+                  <Image
+                    src="/benjamin-arthuys.webp"
+                    alt="Portrait de Benjamin Arthuys"
+                    fill
+                    sizes="(min-width: 768px) 256px, 192px"
+                    className="object-cover grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0"
+                  />
+                </div>
               </div>
             </Reveal>
           </div>
