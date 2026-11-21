@@ -59,3 +59,11 @@ export function formatDate(date: string): string {
 export function readingTime(md: string): number {
   return Math.max(1, Math.round(md.split(/\s+/).length / 220));
 }
+
+// Version audio ElevenLabs d'un article (générée par scripts/tts.mjs), si elle existe.
+export function getAudio(slug: string): { src: string; duration: number; starts: number[]; words?: number[][] } | null {
+  const meta = path.join(process.cwd(), "public/audio", `${slug}.json`);
+  if (!fs.existsSync(meta)) return null;
+  const { duration, starts, words } = JSON.parse(fs.readFileSync(meta, "utf8"));
+  return { src: `/audio/${slug}.mp3`, duration, starts, words };
+}
