@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogShell from "@/components/BlogShell";
-import { formatDate, getPost, getPosts, readingTime, renderMarkdown } from "@/lib/blog";
+import ListenArticle from "@/components/ListenArticle";
+import { formatDate, getAudio, getPost, getPosts, readingTime, renderMarkdown } from "@/lib/blog";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -44,6 +45,7 @@ export default async function Article({ params }: Props) {
           <p className="mt-8 font-mono text-xs uppercase tracking-[0.2em] text-mist">
             {formatDate(post.date)} · {readingTime(post.body)} min de lecture
           </p>
+          <ListenArticle title={post.title} targetId="article-body" audio={getAudio(post.slug)} />
         </header>
 
         {post.cover && (
@@ -53,6 +55,7 @@ export default async function Article({ params }: Props) {
         )}
 
         <div
+          id="article-body"
           className="prose-ba mx-auto mt-14 max-w-[760px] px-[6vw] md:px-0"
           dangerouslySetInnerHTML={{ __html: renderMarkdown(post.body) }}
         />

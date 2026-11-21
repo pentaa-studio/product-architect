@@ -133,3 +133,22 @@ html.lenis body {
 .prose-ba li::marker { color: var(--color-morpho); }
 .prose-ba hr { margin: 2.5em 0; border: 0; border-top: 1px solid var(--color-line); }
 .prose-ba blockquote { border-left: 3px solid var(--color-morpho); padding-left: 1.2em; font-style: italic; }
+
+/* Paragraphe en cours de lecture à voix haute. */
+.prose-ba > * { transition: background-color 0.5s ease, box-shadow 0.5s ease; border-radius: 6px; }
+.prose-ba > .is-speaking {
+  background: color-mix(in oklab, var(--color-morpho) 9%, transparent);
+  box-shadow: 0 0 0 10px color-mix(in oklab, var(--color-morpho) 9%, transparent);
+}
+
+/* Lecture audio : le texte s'écrit au rythme de la voix. */
+#article-body.is-streaming .w {
+  opacity: 0.14;
+  transition: opacity 0.45s ease, filter 0.45s ease, color 0.6s ease;
+}
+#article-body.is-streaming .is-speaking .w:not(.is-read) { filter: blur(1.5px); }
+#article-body.is-streaming .w.is-read { opacity: 1; filter: none; }
+#article-body.is-streaming .w.is-now { color: var(--color-morpho); }
+@media (prefers-reduced-motion: reduce) {
+  #article-body.is-streaming .w { transition: none; filter: none !important; }
+}
