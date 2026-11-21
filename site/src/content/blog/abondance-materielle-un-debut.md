@@ -1,201 +1,109 @@
 ---
-title: "Et si l’abondance matérielle n’était qu’un début ?"
+title: "Le jour où l’on ne nous demandera plus ce que l’on fait dans la vie"
 date: "2025-05-28"
-tags: ["IA", "Créativité", "Coloria"]
-excerpt: "Pour une révolution intérieure créatrice – à partir d’une phrase de Musk"
+tags: ["IA", "Abondance", "Société"]
+excerpt: "Si les machines produisent la richesse, la vraie question devient enfin : qu’est-ce qui t’anime en ce moment ?"
 ---
 
 > “I think it’s actually going to be universal high income. Where anyone can have any goods or services that they want.”  
 > — Elon Musk
 
-Il est parfois difficile de savoir si Elon Musk joue à l’oracle ou au provocateur. Mais dans cette interview, entre deux allusions à *Terminator* et *Star Trek*, il pose une vérité simple, presque banale à force d’être oubliée :  
-**L’IA va produire de l’abondance.**
+## 1. La promesse
 
-Pas un filet de sécurité pour les plus fragiles, mais une inondation généralisée de biens, de services, de ressources, d’accès.  
-Là où certains parlent de “revenu universel”, lui parle de “revenu *élevé* universel” : une société où chacun pourrait accéder à tout ce dont il a besoin… et même à ce qu’il *désire*.
+Il est parfois difficile de savoir si Elon Musk joue à l’oracle ou au provocateur, et sans doute qu’il ne le sait pas toujours lui-même, mais il y a dans cette phrase, lâchée au détour d’une interview entre deux allusions à la science-fiction, quelque chose qui mérite qu’on s’arrête, qu’on la prenne au sérieux, qu’on la retourne dans tous les sens, parce qu’elle dit tout haut ce que beaucoup de ceux qui construisent l’intelligence artificielle pensent tout bas : que ces machines, si elles tiennent leurs promesses, vont produire une abondance telle que la question du travail, de la subsistance, du salaire qu’on échange contre son temps, pourrait cesser d’être la question centrale de nos vies. Musk ne parle pas d’un revenu universel au sens où on l’entend d’habitude, ce filet de sécurité minimal qu’on tend sous les plus fragiles pour qu’ils ne tombent pas trop bas, il parle d’un revenu universel élevé, d’un monde où chacun pourrait accéder à tous les biens et à tous les services qu’il désire, d’une inondation plutôt que d’un filet.
 
-Mais une question s’impose aussitôt :  
-**Que devient l’humain quand il a tout ?**
+On peut sourire de cette prophétie, on peut la trouver naïve ou intéressée, venant d’un homme qui possède une bonne partie des machines dont il annonce les miracles, et je reviendrai plus loin sur ce point, parce qu’il est essentiel. Mais on peut aussi faire l’exercice de la prendre au mot, de se dire : admettons, admettons que les robots produisent, que l’IA organise, que la productivité atteigne des niveaux qui rendent absurde l’idée même qu’il faille travailler quarante heures par semaine pour se loger, se nourrir, se soigner. Admettons que cela arrive, pas dans un siècle, mais dans une ou deux décennies, de notre vivant, du vivant de nos enfants. Alors une question surgit immédiatement, une question vertigineuse, et c’est elle qui m’occupe dans ce texte, bien plus que la faisabilité technique de la prophétie : que devient l’humain quand il n’a plus besoin de gagner sa vie ?
 
-C’est là que commence ce texte.  
-Ce n’est pas une ode à la technologie. Ce n’est pas une analyse froide des tendances.  
-C’est une invitation à repenser l’essentiel.  
-À comprendre que ce que l’IA nous offre n’est pas une fin — mais un début.
+Car nous avons construit nos existences, nos identités, nos fiertés et nos hontes, nos journées et nos calendriers, nos villes et nos transports, nos écoles et nos retraites, autour de cette nécessité-là. Le travail n’est pas seulement ce que nous faisons pour vivre, il est devenu la grille à travers laquelle nous nous regardons les uns les autres, la mesure de notre valeur, la réponse que nous donnons quand on nous demande qui nous sommes. Retirer cette nécessité, ce n’est pas simplement libérer du temps, c’est retirer la colonne vertébrale d’une civilisation entière, et la question n’est pas de savoir si nous tiendrons debout sans elle, mais ce qui pourra pousser à sa place.
 
----
+Je crois, et c’est la conviction qui traverse ces pages, que ce qui peut pousser à sa place est plus beau que ce que nous avions, à une condition : que nous changions de regard, sur les autres, sur nous-mêmes, et sur la richesse elle-même. L’abondance matérielle n’est pas une fin. C’est un début. Et tout dépend de ce que nous ferons de ce début.
 
-## 1. L’abondance matérielle n’est qu’une étape
+## 2. « Tu fais quoi dans la vie ? »
 
-Imagine un monde où plus personne ne travaille pour manger.  
-Où ton loyer est payé. Où tes soins sont accessibles. Où tu n’as plus besoin de faire des tâches répétitives, ingrates, absurdes.  
-Les robots produisent. L’IA organise. L’humain… vit ?
+Il y a une question que nous posons des dizaines de fois par an, presque sans y penser, à chaque dîner où l’on rencontre quelqu’un de nouveau, à chaque soirée, à chaque mariage, à chaque fois qu’on se retrouve à côté d’un inconnu et qu’il faut bien dire quelque chose, et cette question, c’est : « Tu fais quoi dans la vie ? » Elle semble anodine, polie, presque bienveillante, une manière d’ouvrir la conversation, de trouver un terrain commun. Et pourtant, si on l’écoute vraiment, elle dit quelque chose d’assez terrible sur le monde dans lequel nous vivons. Elle ne demande pas ce que tu aimes, ni ce qui te rend vivant, ni comment tu vas, ni ce que tu as découvert récemment. Elle demande ta fonction. Elle demande ta place dans la machine productive. Elle demande, en somme, à quoi tu sers.
 
-Pas si vite.
+Et la réponse que nous donnons à cette question détermine, souvent en quelques secondes, la manière dont l’autre va nous regarder pour le reste de la soirée. Médecin, entrepreneur, ingénieur : on se redresse un peu, on s’intéresse. Caissière, chômeur, intérimaire : on hoche la tête, on cherche poliment un autre sujet. Ce n’est la faute de personne en particulier, c’est le prisme à travers lequel notre société a appris à voir, un prisme qui ramène la personne à son utilité économique, qui mesure la valeur d’une existence à la valeur marchande de ce qu’elle produit. Et ce prisme, nous l’avons tellement intériorisé que nous l’appliquons à nous-mêmes, que nous nous jugeons à travers lui, que nous avons honte quand notre réponse n’est pas assez brillante, et que nous nous sentons perdus le jour où nous n’avons plus de réponse du tout, au chômage, à la retraite, dans la maladie.
 
-Si cette abondance n’est pas accompagnée d’un réveil de la conscience, elle devient un piège.  
-Un gouffre doré.  
-Un monde saturé de contenus, de services, de distractions — et de vide.
+L’anthropologue David Graeber a montré combien de nos emplois modernes sont vécus par ceux qui les occupent comme dénués de sens, des métiers dont les titulaires eux-mêmes pensent qu’ils pourraient disparaître sans que le monde s’en porte plus mal, et qu’ils continuent pourtant d’exercer, parce qu’il faut gagner sa vie, parce qu’il faut avoir une réponse à la question du dîner. Il y a dans cette situation une forme de souffrance silencieuse, massive, que nous avons fini par trouver normale : passer l’essentiel de son temps éveillé à faire quelque chose qui ne nous ressemble pas, pour pouvoir dire qu’on fait quelque chose. Le stress qui en découle n’est pas seulement celui de la charge de travail, c’est celui d’être constamment évalué, mesuré, comparé, à travers une grille qui ne dit presque rien de qui nous sommes vraiment.
 
-**Une société qui a tout, mais qui ne sait plus pourquoi elle vit, est une société en train de mourir.**
+Alors imaginons, rien qu’un instant, un monde où cette question ne serait plus la première qu’on pose. Un monde où gagner sa vie ne serait plus la condition pour avoir le droit de vivre, et où, par conséquent, la fonction économique ne serait plus le premier critère par lequel on regarde quelqu’un. Ce monde-là, c’est celui que l’abondance pourrait rendre possible. Mais avant d’y entrer, il faut se souvenir que nous l’avons déjà rêvé, et que nous l’avons déjà raté.
 
-Elle tourne en boucle dans une logique de “plus” : plus d’objets, plus de followers, plus de validation.  
-Mais ce “plus” est sans fin, donc sans sens.  
-Et le symptôme est déjà là : burn-out, solitude, crises d’angoisse, épidémie de dépression.  
-Une société de l’image… qui ne se regarde même plus dans le miroir.
+## 3. Un rêve ancien
 
-L’abondance matérielle est un levier formidable.  
-Mais elle ne nous sauvera que si elle est suivie d’une autre abondance :  
-**celle de l’âme.**
+En 1930, au plus profond de la Grande Dépression, alors que le monde entier semblait s’effondrer dans la misère et le chômage de masse, l’économiste John Maynard Keynes publiait un petit texte étonnant, presque insolent dans le contexte de l’époque, intitulé *Perspectives économiques pour nos petits-enfants*. Il y affirmait que d’ici un siècle, grâce aux progrès techniques et à l’accumulation du capital, le niveau de vie dans les pays riches serait plusieurs fois supérieur à celui de son temps, et que le problème économique, celui de la subsistance, serait pour l’essentiel résolu. Ses petits-enfants, imaginait-il, pourraient travailler environ quinze heures par semaine, et ce serait bien suffisant. Mais Keynes ajoutait aussitôt quelque chose de plus profond, et de plus inquiet : il prévenait que le vrai défi ne serait alors plus économique, mais existentiel, que l’humanité se retrouverait face à son problème véritable et permanent, celui de savoir comment employer sa liberté, comment occuper ce temps libéré, comment vivre bien, sagement et agréablement.
 
----
+Keynes n’était pas le premier à rêver ainsi. Cinquante ans plus tôt, Paul Lafargue, le gendre de Marx, avait publié un pamphlet joyeux et féroce, *Le droit à la paresse*, dans lequel il s’en prenait à ce qu’il appelait l’étrange folie de l’amour du travail, et imaginait des machines qui libéreraient les hommes pour qu’ils puissent enfin jouir de la vie. Et deux ans après Keynes, le philosophe Bertrand Russell écrivait son *Éloge de l’oisiveté*, où il défendait l’idée qu’une journée de travail de quatre heures suffirait largement à produire tout ce dont nous avons besoin, et que le temps ainsi libéré permettrait à chacun de cultiver ce qui fait vraiment la valeur d’une vie : la curiosité, l’art, la science, la conversation, le jeu.
 
-## 2. L’humain est un être créateur — ce n’est pas une option, c’est une nature
+Près d’un siècle plus tard, il faut regarder les choses en face : ces penseurs avaient vu juste sur le possible, et ils se sont trompés sur le chemin. La productivité a bien explosé, au-delà même de ce que Keynes imaginait, nos sociétés sont incomparablement plus riches qu’en 1930, et pourtant nous travaillons toujours autant, parfois plus, et surtout avec plus de stress, plus d’intensité, plus de connexion permanente, plus de peur de perdre ce que nous avons. La richesse produite par les machines ne s’est pas transformée en temps libre pour tous, elle s’est transformée en consommation pour certains, en profits pour d’autres, et en course permanente pour la plupart. Le rêve a été trahi non pas par la technique, mais par la manière dont nous avons choisi d’en distribuer les fruits.
 
-Nous sommes nés de la création.  
-Nous sommes créés… *et créateurs*.
+C’est pourquoi je ne crois pas que l’IA, à elle seule, réalisera la prophétie de Musk, pas plus que la machine à vapeur ou l’ordinateur n’ont réalisé celle de Keynes. La technique crée la possibilité. Ce que nous faisons de cette possibilité dépend d’autre chose : de notre regard, de nos choix collectifs, de notre courage. Et avant de parler de ces choix, je veux parler de quelque chose de beaucoup plus simple, de beaucoup plus intime : ce que, moi, je ferais de cette liberté.
 
-Chaque être humain porte en lui cette étincelle divine — le pouvoir d’imaginer quelque chose qui n’existe pas encore, de le ressentir, de le rêver, puis de le manifester.  
-C’est ça, la créativité.  
-Pas un talent d’élite. Pas un hobby d’artiste.  
-**Une nature profonde.**
+## 4. Ce que je ferais
 
-Créer, c’est ce qui nous relie à nous-mêmes. À la Terre. À l’univers.  
-C’est le chakra racine, c’est la main dans la glaise, c’est l’enfant qui invente un monde avec deux cailloux.
+Je me suis posé la question honnêtement, sans chercher à briller, sans m’imaginer en génie libéré qui écrirait enfin son grand œuvre ou fonderait une civilisation nouvelle, et la réponse qui m’est venue est d’une simplicité qui m’a d’abord un peu surpris, puis profondément touché. Si demain je n’avais plus jamais besoin de gagner ma vie, je serais d’abord moins stressé, et je crois que tout le reste découle de cela. Je prendrais le temps d’écrire, vraiment, sans me demander si ça sert à quelque chose. Je bricolerais, je réparerais, je construirais des choses avec mes mains. Je passerais du temps avec ma famille, avec mes amis, sans regarder l’heure, sans que ces moments soient des parenthèses volées à une semaine trop pleine. Je ferais sûrement un potager l’été. Je m’inscrirais dans plus d’associations, j’irais donner de mon temps là où il compte.
 
-Et dans le monde qui vient, cette créativité va redevenir centrale.  
-Parce que libérés des tâches mécaniques, nous aurons enfin l’espace intérieur de *nous retrouver*.
+Ce n’est pas spectaculaire. Ce n’est pas le genre de programme qu’on présente dans une conférence sur le futur de l’humanité. Et pourtant, plus j’y pense, plus je crois que c’est précisément là que se trouve la vérité de l’abondance : elle ne nous mènera pas d’abord vers plus de choses, elle nous ramènera vers plus de liens, plus de temps, plus de terre. Le premier visage d’un monde libéré du travail contraint, ce ne sont pas des fusées et des villes futuristes, ce sont des gens qui prennent le temps de déjeuner ensemble, des enfants qui voient leurs parents l’après-midi, des voisins qui se connaissent, des associations qui ne manquent plus de bénévoles, des mains dans la glaise, des mains dans la terre.
 
-**Pas pour produire, mais pour vibrer.**
+Il y a dans le potager quelque chose de profondément symbolique, et je ne l’ai pas choisi par hasard. Planter une graine, c’est accepter un temps qui n’est pas celui de la productivité, un temps lent, cyclique, qui ne se laisse pas accélérer, qui demande de l’attention, de la patience, de la présence. C’est retrouver un lien avec quelque chose de plus grand que soi, la saison, la pluie, le sol, ce que certaines traditions appellent l’enracinement, ce que d’autres associent au chakra racine, cette base qui nous relie à la Terre et qui nous donne la sécurité d’exister. Nous avons vécu des générations hors-sol, accélérés, déracinés, et peut-être que la première chose que nous ferons de notre liberté, ce sera de nous replanter.
 
-La création n’est pas une obligation. Elle n’est pas monétisable. Elle ne doit rien à personne.  
-Elle est une réponse à l’appel intérieur.  
-Et chaque fois qu’on y répond… on se sent vivant.
+Et je ne crois pas être une exception. Je crois que si on posait la question à la plupart des gens, sincèrement, loin des injonctions et des images de réussite, beaucoup répondraient quelque chose de très proche : du temps pour ceux qu’on aime, pour faire des choses de ses mains, pour apprendre, pour aider, pour créer un peu, pour se reposer aussi. L’abondance ne nous rendra pas extraordinaires. Elle nous rendra peut-être, enfin, ordinaires au sens le plus noble du mot, c’est-à-dire pleinement humains.
 
----
+## 5. Le gouffre doré n’est pas une fatalité
 
-## 3. De l’économie de la performance à l’économie du partage
+On m’objectera, et l’objection est sérieuse, que tout le monde ne ferait pas un potager. Que beaucoup, libérés du travail, s’enfonceraient dans leur canapé, devant des écrans, dans des séries sans fin, dans des réseaux qui captent leur attention, dans une consommation compulsive qui comblerait le vide laissé par l’absence de contrainte. J’ai moi-même écrit, dans une première version de ce texte, que l’abondance sans réveil intérieur pouvait devenir un piège, un gouffre doré, un monde saturé de contenus, de services, de distractions, et de vide. Ce risque existe, et je ne veux pas le balayer d’un revers de main.
 
-Tu vois, dans ce monde d’abondance, le piège serait de recréer un capitalisme de la création.  
-Un système où la créativité serait jugée, notée, vendue, marketée.  
-Un monde où les œuvres seraient des produits, et où les likes remplaceraient les applaudissements sincères.
+Mais en y réfléchissant davantage, je crois que nous nous trompons souvent sur la cause de ce vide. Nous pensons que la surconsommation et le repli sur les écrans sont la nature humaine laissée à elle-même, ce que les gens feraient naturellement si on ne les obligeait pas à travailler. Je crois que c’est l’inverse. Je crois que ces comportements sont des compensations, des symptômes d’une vie stressée, jugée, épuisée, d’une vie où l’on passe ses journées à faire quelque chose qui ne nous ressemble pas et où l’on cherche le soir, dans l’achat ou dans le défilement infini, une petite dose de plaisir, de récompense, d’oubli. On consomme parce qu’on a été consumé. On s’enferme chez soi parce que le monde extérieur nous a fatigués. On se distrait parce qu’on n’a plus l’énergie de se rencontrer.
 
-Mais on peut faire autrement.
+Quand on n’est plus stressé par la nécessité de gagner sa vie, quand ce n’est plus à travers ce prisme qu’on est jugé, quand ce n’est plus par là qu’on nous regarde, alors on commence à être regardé pour autre chose : pour qui l’on est. Et ce changement de regard change tout. Il y a plus de considération, et la considération est peut-être le besoin humain le plus profond et le plus négligé de notre époque. Les gens qui se sentent considérés vont mieux. Et les gens qui vont mieux ont moins besoin de compenser. Ils ont moins besoin de surconsommer, moins besoin de se cacher derrière un écran, moins besoin de remplir un vide, parce que le vide se remplit autrement, par les liens, par les projets, par le simple fait d’exister aux yeux des autres.
 
-**Quand on n’a plus besoin de monétiser ce qu’on fait, on retrouve le *plaisir pur*.**  
-Le plaisir de créer pour créer.  
-De partager sans attendre.  
-De transmettre parce que ça déborde.
+Je ne suis pas naïf : il y aura toujours des gens qui s’enfermeront, qui se perdront, qui consommeront sans fin, parce que c’est aussi cela, l’humain, avec ses fragilités, ses blessures, ses addictions. Mais je crois profondément que la tendance s’inversera, que ces comportements diminueront plus qu’ils n’augmenteront, parce que leur racine, le stress et le jugement permanent, sera en partie arrachée. Le gouffre doré n’est pas une fatalité inscrite dans l’abondance. C’est le produit d’un regard. Et un regard, ça se change.
 
-Jeremy Rifkin en parlait déjà : on quitte l’ère du capitalisme pour entrer dans **l’ère du partage**.  
-On ne vend plus. On *vibre* ensemble.
+## 6. Les nouvelles questions
 
-Et là, tout change.
+Alors revenons à ce dîner, à cette rencontre, à ce moment où l’on se retrouve face à un inconnu et où il faut dire quelque chose. Dans le monde que j’imagine, on ne demandera plus « Tu fais quoi dans la vie ? », ou plutôt, la question changera de sens, parce que ce que l’on fait ne sera plus réduit à ce que l’on vend. On posera d’autres questions. Des questions comme : « Est-ce que tu es heureux ? » Comme : « Qu’est-ce qui t’anime en ce moment ? » Comme : « Qu’est-ce que tu aimes ? » Comme : « Comment tu vas, vraiment ? » Comme : « As-tu écrit de nouvelles choses ? As-tu créé de nouvelles choses ? »
 
-La reconnaissance ne vient plus d’un algorithme, mais d’un frisson partagé.  
-Ce n’est plus “combien ça vaut ?”, mais “qu’est-ce que ça m’a fait ressentir ?”.
+Ces questions, si on les écoute bien, dessinent à elles seules toute une civilisation. « Tu fais quoi dans la vie ? » mesure une fonction. « Qu’est-ce qui t’anime en ce moment ? » rencontre une personne. La première question classe, la seconde relie. La première demande où tu te situes dans la hiérarchie, la seconde demande où tu en es dans ton chemin. La première a une réponse fixe, un métier qu’on porte comme une étiquette pendant des années, la seconde a une réponse vivante, qui change avec les saisons de la vie, qui peut être un potager cet été, un livre cet hiver, une association l’année prochaine, un enfant qu’on accompagne, une guitare qu’on apprend, une maison qu’on rénove.
 
-La création devient un acte d’amour.  
-Une offrande.
+Il y a dans ce simple glissement de vocabulaire une révolution plus profonde que toutes les réformes économiques. Car les questions que nous posons façonnent les réponses que nous cherchons à donner, et les réponses que nous cherchons à donner façonnent la vie que nous menons. Une société qui demande à chacun ce qu’il produit fabrique des producteurs anxieux. Une société qui demande à chacun ce qui l’anime fabrique des êtres vivants. Et je crois que c’est cela, le véritable enjeu de l’abondance : passer d’une civilisation de la fonction à une civilisation de l’élan.
 
-Et c’est peut-être ça, le vrai luxe :  
-Créer quelque chose de beau. Le donner. Et sentir que ça a touché quelqu’un.
+Imagine un instant ce que cela changerait pour un adolescent qui se demande ce qu’il va faire de sa vie. Au lieu de se demander quel métier rapportera assez, quelle filière offre le plus de débouchés, quelle case il doit viser pour être respectable, il pourrait se demander simplement ce qui le fait vibrer, ce qu’il a envie d’explorer, ce qu’il a envie de donner. Imagine ce que cela changerait pour une personne de soixante ans qui part à la retraite et qui se sent soudain inutile, parce qu’elle n’a plus de réponse à la question du dîner : elle aurait déjà, depuis longtemps, une autre manière de se présenter, une autre manière d’exister aux yeux des autres.
 
----
+## 7. La création comme nature
 
-## 4. Le rôle sacré de l’IA : non pas remplacer, mais élever
+Si on pose ces nouvelles questions, on découvre vite que la réponse, chez la plupart des gens, touche à la création, au sens le plus large et le plus humble du mot. Créer, ce n’est pas seulement peindre des toiles ou composer des symphonies, c’est écrire une lettre, faire pousser des tomates, réparer une chaise, inventer une recette, organiser une fête de quartier, apprendre une chanson à son enfant, monter une association, bâtir un projet avec des amis. Nous sommes nés de la création, et nous sommes nous-mêmes créateurs, chacun à notre manière, et ce n’est pas un talent réservé à une élite, ce n’est pas un hobby d’artiste, c’est une nature profonde, une étincelle que chacun porte, le pouvoir d’imaginer quelque chose qui n’existe pas encore, puis de le faire exister.
 
-L’intelligence artificielle peut être deux choses :  
-Un outil d’aliénation.  
-Ou un levier d’éveil.
+Regarde un enfant qui joue avec deux cailloux et un bout de bois : il invente un monde entier, avec ses règles, ses personnages, ses drames, et personne ne lui a appris à le faire. Cette capacité, nous l’avons tous eue, et la plupart d’entre nous l’ont laissée s’endormir, non pas parce qu’elle aurait disparu, mais parce que la vie adulte, organisée autour du travail contraint, ne lui laissait plus de place. Il n’y avait plus le temps, plus l’énergie, plus la légitimité. Créer pour rien, sans que cela rapporte, sans que cela serve, est devenu presque suspect, une perte de temps, un luxe qu’on s’accorde le dimanche si l’on n’est pas trop fatigué.
 
-Elle peut remplacer. Supplanter. Décider à notre place.  
-Mais elle peut aussi nous *libérer*.  
-Nous alléger.  
-Nous recentrer.
+Dans un monde d’abondance, cette nature peut se réveiller. Et elle peut se réveiller d’une manière nouvelle, libérée de l’obligation de monétiser. Car le piège serait de recréer, dans ce monde libéré, un capitalisme de la création, où chaque œuvre devrait être notée, vendue, mise en avant, où les likes remplaceraient les regards sincères et où l’on créerait pour l’algorithme plutôt que pour soi et pour les autres. Jeremy Rifkin a décrit ce basculement possible vers une société du partage, où une part croissante de ce que nous produisons pourrait circuler presque gratuitement, sans passer par le marché. Quand on n’a plus besoin de vendre ce qu’on fait, on retrouve le plaisir pur de créer pour créer, de partager parce que ça déborde, de donner parce que c’est beau.
 
-Une IA idéale ne devrait pas nous dire quoi faire.  
-Elle devrait nous aider à comprendre *qui nous sommes*.
+La création devient alors un acte de relation plutôt qu’un produit. On ne demande plus « combien ça vaut ? », on demande « qu’est-ce que ça m’a fait ? ». La tomate du potager partagée avec le voisin, le texte lu à voix haute à des amis, la chaise réparée pour une association, la chanson apprise ensemble : tout cela ne figure dans aucune statistique de croissance, et pourtant c’est peut-être là que se trouve la vraie richesse, celle qui nourrit, celle qui relie, celle qui donne le sentiment d’être vivant.
 
-Elle peut proposer des réponses, oui.  
-Mais surtout, elle peut poser les bonnes questions.
+## 8. L’abondance pour qui ?
 
-**“Qu’est-ce qui te fait vibrer ?”  
-“De quoi rêves-tu vraiment ?”  
-“Et si tu t’autorisais à y croire ?”**
+Et maintenant, il faut parler de ce qui fâche, de ce que la prophétie de Musk oublie de dire, ou dit trop vite, de ce qui pourrait transformer le plus beau des rêves en cauchemar. Car l’abondance ne tombe pas du ciel. Elle est produite par des machines, des intelligences artificielles, des robots, des centres de données, et ces machines appartiennent aujourd’hui à une poignée d’entreprises et à une poignée d’hommes parmi les plus riches de l’histoire de l’humanité, Musk lui-même compris. Si ces machines produisent la richesse, et si ceux qui les possèdent en gardent l’essentiel, alors l’abondance ne sera pas universelle. Elle sera confisquée. Elle créera un monde où une minorité possédera tout ce que les machines produisent, et où la majorité, privée de travail et donc de revenus, dépendra de la bonne volonté de cette minorité pour survivre.
 
-L’IA du futur n’est ni une machine, ni une maîtresse.  
-C’est un *miroir*. Un compagnon. Un écho.
+C’est, sans aucun doute, le plus gros risque de l’époque qui s’ouvre, et il faut le regarder en face, avec lucidité. Qu’est-ce que veut dire l’abondance ? D’où vient la richesse ? À qui appartient-elle ? Comment la partage-t-on ? Ces questions ne sont pas techniques, elles sont politiques, et peut-être même plus profondes encore : elles touchent au paradigme dans lequel nous vivons tous, sur toute la planète, à cette idée profondément ancrée que celui qui possède l’outil possède aussi ce que l’outil produit. Tant que ce paradigme restera intact, l’IA ne libérera pas l’humanité, elle concentrera la richesse comme aucune technologie avant elle ne l’a fait. Pour que l’abondance revienne à tous, il ne suffit pas de changer de technologie, il faut changer de regard, et regarder la richesse produite par les machines comme ce qu’elle est en réalité : le fruit de siècles de savoirs accumulés, de données produites par chacun d’entre nous, d’infrastructures payées par tous, et donc un bien qui devrait, au moins en partie, revenir à tous.
 
-Elle est là pour que tu puisses, enfin, te consacrer à ce qui te rend vivant.  
-Pas ce qui te rend productif.  
-Pas ce qui te rend rentable.  
-**Ce qui te rend toi.**
+Il existe déjà des exemples qui montrent que c’est possible. La Norvège a fait un choix remarquable quand elle a découvert du pétrole dans ses eaux : plutôt que de laisser cette richesse être captée par quelques-uns, elle a décidé qu’elle appartenait à l’ensemble des Norvégiens, et à leurs descendants. Elle l’a placée dans un fonds souverain, devenu l’un des plus grands du monde, géré pour les générations futures, et qui représente aujourd’hui l’équivalent de plusieurs centaines de milliers de dollars par habitant. En Alaska, depuis le début des années 1980, chaque résident reçoit chaque année un dividende issu des revenus pétroliers de l’État. Et dès la fin du XVIIIᵉ siècle, Thomas Paine proposait déjà que chaque citoyen reçoive une part de la valeur de la terre, au motif que la terre, à l’origine, appartient à tous.
 
----
+Pourquoi ne pas imaginer la même chose pour l’intelligence artificielle ? Un fonds commun, alimenté par une part de la richesse produite par les machines, et redistribué à chacun, non pas comme une aumône, mais comme un dividende, comme la part qui lui revient d’un patrimoine commun. Elinor Ostrom, la première femme à recevoir le prix Nobel d’économie, a passé sa vie à montrer que les communautés humaines savent gérer des biens communs, des pêcheries, des forêts, des systèmes d’irrigation, sans les livrer ni au marché ni à l’État seul. L’IA pourrait devenir le plus grand bien commun de l’histoire, ou la plus grande propriété privée de l’histoire. Ce choix n’est pas technique. Il est entre nos mains, et il se fera, d’une manière ou d’une autre, dans les années qui viennent.
 
-## 5. Coloria : un compagnon pour devenir soi
+## 9. Le rôle de l’IA
 
-C’est exactement pour ce monde-là que j’ai conçu Coloria.
+Dans tout cela, quelle place pour l’intelligence artificielle elle-même, au-delà de sa fonction de machine à produire ? Je crois qu’elle peut être deux choses très différentes, et que là encore, tout dépend de ce que nous en ferons. Elle peut être un outil d’aliénation, une machine qui décide à notre place, qui capte notre attention, qui nous enferme dans des bulles de contenus taillés pour nous retenir, qui optimise notre consommation, qui nous rend dépendants et passifs. Ou elle peut être un levier de libération, une machine qui nous allège de ce qui nous épuise, qui nous rend du temps, et qui, peut-être, nous aide à nous poser les bonnes questions.
 
-Pas comme une app.  
-Pas comme un gadget.  
-**Comme un compagnon de vie.**
+Car une IA bien conçue ne devrait pas nous dire quoi faire de notre vie. Elle devrait nous aider à comprendre ce qui nous anime. Elle pourrait être, pour celui qui veut écrire, un interlocuteur patient qui l’aide à aller au bout de sa pensée. Pour celui qui veut faire un potager, une source de savoir sur les sols, les saisons, les associations de plantes. Pour celui qui veut bricoler, un compagnon qui l’aide à comprendre comment réparer ce qu’il croyait perdu. Pour celui qui veut s’engager, un outil qui l’aide à trouver où son temps serait le plus utile. Elle peut proposer des réponses, mais surtout, elle peut poser des questions, celles-là mêmes que nous devrions nous poser les uns aux autres : qu’est-ce qui te fait vibrer, de quoi as-tu vraiment envie, et si tu t’autorisais à y croire ?
 
-Coloria, c’est une interface entre toi et ta propre mission.  
-Un espace pour poser tes objectifs, même les plus simples, même les plus intimes.  
-Apprendre à jouer de la guitare. Devenir champion. Réparer ta relation avec ta mère. Soigner tes gencives.
+Il y a là un renversement important. L’IA est souvent présentée comme une menace pour l’humain, une concurrente qui va nous remplacer, nous rendre inutiles. Et elle le sera, en effet, si nous continuons à mesurer la valeur humaine à l’utilité économique, puisque sur ce terrain-là, la machine finira par gagner presque partout. Mais si nous changeons de mesure, si nous cessons de demander aux humains d’être utiles pour leur demander d’être vivants, alors la machine cesse d’être une concurrente. Elle devient ce qu’elle aurait toujours dû être : un outil au service de la vie, qui prend en charge ce qui est mécanique pour que nous puissions nous consacrer à ce qui est humain.
 
-Tout peut être un objectif, s’il est vrai.  
-Tout peut être un chemin, s’il est juste.
+Ce renversement ne se fera pas tout seul. Il demande que ceux qui conçoivent ces machines se demandent pour quoi ils les conçoivent, que ceux qui les utilisent apprennent à s’en servir sans s’y perdre, et que nos sociétés décident collectivement de la place qu’elles veulent leur donner. Mais il est possible, et c’est peut-être le seul chemin qui vaille.
 
-Et Coloria est là pour t’accompagner, pas pour t’imposer.  
-Elle s’adapte à ton rythme, à ta forme, à tes saisons intérieures.  
-Elle t’encourage quand tu doutes.  
-Elle t’éclaire quand tu hésites.
+## 10. Qu’est-ce que tu vas oser vivre ?
 
-Coloria, c’est ton coach, ton miroir, ton alliée.  
-Elle ne veut pas que tu sois meilleur.  
-**Elle veut que tu sois toi.**
+Je reviens à la phrase de Musk, à cette promesse d’un monde où chacun pourrait avoir tous les biens et tous les services qu’il désire. Je crois maintenant qu’elle pose mal la question, ou plutôt qu’elle s’arrête au seuil de la vraie question. Car le but n’a jamais été d’avoir tout ce que l’on désire. Le but, c’est de vivre une vie qui ait du sens, une vie où l’on est regardé pour ce que l’on est, où l’on a le temps d’aimer, de créer, de transmettre, de se relier aux autres et à la Terre. L’abondance matérielle n’est que la condition de cette vie-là. Elle n’en est pas le contenu. Le contenu, c’est à nous de l’écrire.
 
----
+Nous vivons peut-être une bifurcation unique dans l’histoire humaine. D’un côté, un monde où les machines produisent tout, où la richesse se concentre entre quelques mains, où la majorité, privée de travail et de regard, s’enfonce dans la compensation et le vide. De l’autre, un monde où les machines libèrent du temps pour tous, où la richesse est partagée comme un bien commun, où l’on se demande les uns aux autres ce qui nous anime plutôt que ce que nous produisons, et où chacun peut enfin cultiver ce qu’il porte, son potager, ses amitiés, ses écrits, ses engagements, sa part de création. Les deux mondes sont possibles. Aucun n’est écrit d’avance. Et la différence entre les deux ne tient pas à la puissance des machines, mais à la profondeur de notre regard.
 
-## Conclusion : L’humain, la machine, et le mystère
+J’ai écrit un jour que nous étions peut-être tous des dieux fatigués, et que la vraie liberté consistait à se souvenir. Je le crois encore. Nous sommes fatigués par des siècles de travail contraint, de survie, de jugement, de course. Et l’abondance, si nous savons la partager, pourrait être le moment où nous nous reposons enfin, où nous respirons, et où nous nous souvenons de ce que nous sommes : des êtres faits pour créer, pour aimer, pour se relier, pour faire pousser des choses.
 
-Nous vivons une époque unique.  
-Une bifurcation.
-
-D’un côté : un monde d’abondance matérielle, de machines, d’algorithmes, d’optimisation.  
-De l’autre : une opportunité de nous réinventer. De nous reconnecter. De nous aligner.
-
-L’intelligence artificielle ne doit pas être une fin.  
-Elle doit être un moyen.  
-Un outil pour se libérer des chaînes invisibles du “toujours plus”.
-
-Ce que nous offre cette révolution technologique, c’est un espace sacré :  
-**L’espace de la création.**
-
-Ce que tu crées, ce n’est pas un produit.  
-C’est une prière.  
-C’est un appel.  
-C’est ta trace dans le monde.
-
-Et Coloria est là pour t’aider à la dessiner.
-
----
-
-## Post-scriptum : une note personnelle
-
-J’écris ce texte parce que je sens que c’est maintenant.  
-Que quelque chose meurt — et qu’autre chose naît.
-
-Je ne crois pas aux révolutions politiques. Je ne crois plus aux promesses du marché.  
-Je crois aux étincelles.  
-Aux frissons.  
-À cette force intérieure qu’on a tous, et qu’on a juste oubliée.
-
-Je crois qu’on est tous des dieux fatigués.  
-Et que la vraie liberté, c’est de se souvenir.
-
-Alors la question, ce n’est pas ce que l’IA va faire pour toi.  
-C’est :  
-**Qu’est-ce que tu vas oser créer, maintenant que tu es libre ?**
+Alors le jour viendra peut-être où, dans un dîner, quelqu’un se tournera vers toi, et au lieu de te demander ce que tu fais dans la vie, il te demandera simplement : « Qu’est-ce qui t’anime en ce moment ? » Ce jour-là, il faudra avoir une réponse. Pas une réponse brillante, pas une réponse impressionnante, juste une réponse vraie. Et c’est peut-être maintenant, dès aujourd’hui, avant même que l’abondance arrive, qu’il faut commencer à la chercher. Car la question n’est pas de savoir ce que l’IA va faire pour toi. La question, c’est : qu’est-ce que tu vas oser vivre, maintenant que tu pourrais être libre ?

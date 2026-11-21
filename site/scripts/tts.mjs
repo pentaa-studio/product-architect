@@ -69,6 +69,7 @@ async function speak(text, previous, next) {
       body: JSON.stringify({
         text,
         model_id: MODEL,
+        language_code: MODEL.includes("v2_5") ? "fr" : undefined, // seuls les modèles v2.5 acceptent la langue forcée
         previous_text: previous || undefined,
         next_text: next || undefined,
         voice_settings: { stability: 0.5, similarity_boost: 0.75, style: 0.15, use_speaker_boost: true },
