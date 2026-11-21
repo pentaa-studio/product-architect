@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/animateur", "destination": "/host.html" },
+    { "source": "/:room((?!api|host|index|favicon)[a-z0-9-]{1,20})", "destination": "/index.html" }
+  ],
+  "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }]
+}
