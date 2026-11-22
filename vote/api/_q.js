@@ -4,6 +4,7 @@
 
 export const SESSIONS = {
   s1: {
+    deck: true,
     title: 'Séance 1 · Comprendre, qualifier, choisir',
     acts: [
       {
@@ -38,6 +39,7 @@ export const SESSIONS = {
     ],
   },
   s2: {
+    deck: true,
     title: 'Séance 2 · Cadrer la valeur',
     acts: [
       {
@@ -63,6 +65,7 @@ export const SESSIONS = {
     ],
   },
   s3: {
+    deck: true,
     title: 'Séance 3 · Prototyper et pitcher',
     acts: [
       {

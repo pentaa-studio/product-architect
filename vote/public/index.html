@@ -47,11 +47,27 @@ label.f{display:grid;gap:8px;font-size:12px}
 .err{color:#ff8a8a}
 .foot{font-size:11px;text-align:center;color:var(--mist)}
 .link{color:var(--mist);text-decoration:underline;font-size:13px}
+/* Avec le deck en direct : les slides à gauche, le vote à droite */
+.deckpane{display:none}
+body.withdeck .deckpane{display:block;position:relative;z-index:1;background:#000}
+.deckpane iframe{display:block;width:100%;height:100%;border:0}
+@media (min-width:900px){
+  body.withdeck{display:grid;grid-template-columns:minmax(0,1fr) 400px;height:100dvh;overflow:hidden}
+  body.withdeck .deckpane{height:100dvh}
+  body.withdeck .app{max-width:none;margin:0;height:100dvh;overflow:auto;border-left:1px solid var(--line);background:var(--night)}
+}
+@media (max-width:899px){
+  body.withdeck .deckpane{width:100%;height:calc(56.25vw + 56px)}
+}
+body.withdeck main{justify-content:flex-start;padding-top:20px}
+.app.ping{animation:ping 1.2s ease-out 2}
+@keyframes ping{0%{box-shadow:inset 0 0 0 0 rgba(200,245,66,.0)}30%{box-shadow:inset 0 0 0 3px rgba(200,245,66,.9)}100%{box-shadow:inset 0 0 0 0 rgba(200,245,66,0)}}
 </style>
 </head>
 <body>
 <div class="grain"></div>
-<div class="app">
+<div class="deckpane" id="deckpane"></div>
+<div class="app" id="app">
   <header>
     <span class="mono">Music Moods · <span class="iri">en direct</span></span>
     <span class="who" id="who"></span>
@@ -108,8 +124,9 @@ async function send(actId,a){
 /* ---------- Écrans ---------- */
 function waiting(msg){
   view.className='center';
+  if(deckOn&&msg) msg=msg.replace(", regardez l'écran",', suivez les slides');
   view.innerHTML=`<div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-    <h2>${msg||'Regardez l\'écran'}</h2><p class="lead">La prochaine question apparaîtra ici toute seule.</p>`;
+    <h2>${msg||(deckOn?'Suivez les slides':'Regardez l\'écran')}</h2><p class="lead">La prochaine question apparaîtra ici toute seule.</p>`;
 }
 
 function poll(act,closed){
@@ -196,12 +213,32 @@ function draw(force){
   return poll(act,closed);
 }
 
+/* ---------- Deck en direct ---------- */
+let deckOn=false, deckFrame=null, lastAct=null;
+function setupDeck(){
+  deckOn=true; document.body.classList.add('withdeck');
+  deckFrame=document.createElement('iframe');
+  deckFrame.title='Slides de la séance'; deckFrame.allow='fullscreen';
+  deckFrame.src=`/deck/${room}.html?live=follow&r=${room}`;
+  $('#deckpane').appendChild(deckFrame);
+  addEventListener('message',e=>{if(e.origin===location.origin&&e.data?.mm==='ready')toDeck()});
+}
+function toDeck(){if(deckFrame&&state?.slide)try{deckFrame.contentWindow.postMessage({mm:'live',slide:state.slide},location.origin)}catch{}}
+
 async function tick(){
   try{
     const r=await fetch(`/api/state?r=${room}&_=${Date.now()}`,{cache:'no-store'});
-    if(r.ok){state=await r.json(); if(statusEl.textContent==='Hors ligne')statusEl.textContent=''; draw();}
+    if(r.ok){
+      state=await r.json(); if(statusEl.textContent==='Hors ligne')statusEl.textContent='';
+      if(state.deck&&!deckOn) setupDeck();
+      toDeck();
+      const a=state.phase==='open'?state.act?.id:null;
+      if(deckOn&&a&&a!==lastAct){const app=$('#app');app.classList.remove('ping');void app.offsetWidth;app.classList.add('ping');if(innerWidth<900)app.scrollIntoView({behavior:'smooth'})}
+      lastAct=a;
+      draw();
+    }
   }catch{statusEl.textContent='Hors ligne';statusEl.className='status mono err'}
-  setTimeout(tick,document.hidden?5000:1800);
+  setTimeout(tick,document.hidden?5000:(deckOn?1200:1800));
 }
 renderWho(); draw(); tick();
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw()});

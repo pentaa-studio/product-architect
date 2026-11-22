@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Music Moods · Présentateur</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel&family=Anonymous+Pro:wght@400;700&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/style.css">
+<style>
+[hidden]{display:none!important}
+html,body{height:100%;overflow:hidden}
+body{display:grid;grid-template-rows:auto 1fr}
+.top{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.top .ttl{display:grid;gap:2px;min-width:0}
+.top .ttl b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grow{flex:1}
+.btn{padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--night2);font-weight:700;font-size:13px;white-space:nowrap}
+.btn:hover{border-color:var(--mist)}
+.btn.pri{background:var(--imago);border-color:var(--imago);color:var(--night)}
+.btn.warn{border-color:#ff8a8a;color:#ff8a8a}
+.clock{display:flex;align-items:center;gap:10px;padding:4px 6px 4px 14px;border-radius:99px;border:1px solid var(--line)}
+.clock .t{font-family:"Anonymous Pro",monospace;font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.delta{font-size:12px;padding:4px 10px;border-radius:99px;background:var(--night2)}
+.delta.late{color:#ff8a8a}.delta.ahead{color:var(--imago)}
+.sync{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--mist)}
+.sync:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mist)}
+.sync.ok:before{background:var(--imago)}.sync.err:before{background:#ff8a8a}
+.main{display:grid;grid-template-columns:1fr 420px;min-height:0}
+.stage{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px}
+.stage iframe{width:100%;height:100%;border:0;border-radius:14px;background:#000}
+aside{border-left:1px solid var(--line);display:flex;flex-direction:column;gap:14px;padding:14px;overflow:auto;min-height:0}
+.card{border:1px solid var(--line);border-radius:16px;background:var(--night2);padding:14px 16px;display:grid;gap:10px}
+.lbl{font-family:"Anonymous Pro",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist)}
+.next{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000}
+.next iframe{position:absolute;left:0;top:0;width:1280px;height:720px;border:0;transform-origin:0 0}
+.next .more{position:absolute;right:8px;bottom:8px;padding:4px 10px;border-radius:99px;background:var(--imago);color:var(--night);font-weight:800;font-size:12px;display:none}
+.next .more.on{display:block}
+.now h2{margin:0;font-size:20px;line-height:1.2}
+.meta{display:flex;flex-wrap:wrap;gap:6px}
+.meta span{font-size:12px;padding:4px 10px;border-radius:99px;border:1px solid var(--line);color:var(--bone)}
+.meta .m{border-color:var(--violet);color:#c9b8ff}
+.cues{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.cues li{position:relative;padding-left:18px;font-size:16px;line-height:1.4}
+.cues li:before{content:"";position:absolute;left:2px;top:.6em;width:7px;height:7px;border-radius:50%;background:var(--imago)}
+.steps{display:flex;gap:5px;flex-wrap:wrap}
+.steps i{width:22px;height:6px;border-radius:3px;background:var(--line)}
+.steps i.on{background:var(--imago)}
+.vote{border-color:var(--violet)}
+.vote .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ph{font-size:12px;padding:3px 10px;border-radius:99px;background:var(--night);color:var(--mist)}
+.ph.open{color:var(--night);background:var(--imago)}
+.nav{display:flex;gap:8px}
+.nav .btn{flex:1;font-size:16px;padding:12px}
+.key{position:fixed;inset:0;display:grid;place-items:center;background:rgba(11,10,18,.92);z-index:5}
+.key form{display:grid;gap:12px;width:min(360px,90vw)}
+.key input{padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--night2);color:var(--bone);font-size:16px}
+.toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);padding:10px 16px;border-radius:99px;background:var(--bone);color:var(--night);font-weight:700;font-size:14px;opacity:0;transition:.3s;pointer-events:none}
+.toast.on{opacity:1}
+@media (max-width:1100px){.main{grid-template-columns:1fr 340px}}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="ttl"><span class="mono muted" style="font-size:11px">Présentateur · <span id="roomlbl"></span></span><b id="stitle">…</b></div>
+  <div class="clock"><span class="t" id="clock">0:00:00</span><button class="btn" id="clockBtn" type="button">Démarrer</button><button class="btn" id="clockReset" type="button" title="Remettre le chrono à zéro">↺</button></div>
+  <span class="delta" id="delta" title="Écart avec le temps prévu au début de cette slide"></span>
+  <span class="grow"></span>
+  <span class="sync" id="sync">Hors ligne</span>
+  <button class="btn" id="proj" type="button" title="Une fenêtre sans contrôles, à partager en visio">Fenêtre de projection</button>
+  <a class="btn" id="votes" target="_blank" rel="noopener">Écran des votes</a>
+</div>
+<div class="main">
+  <div class="stage"><iframe id="deck" title="Deck" allow="fullscreen"></iframe></div>
+  <aside>
+    <div class="nav"><button class="btn" id="prev" type="button">← Précédent</button><button class="btn pri" id="next" type="button">Suivant →</button></div>
+    <div class="card now">
+      <div class="meta" id="meta"></div>
+      <h2 id="title"></h2>
+      <div class="steps" id="steps"></div>
+      <ul class="cues" id="cues"></ul>
+    </div>
+    <div class="card vote" id="vote" hidden>
+      <span class="lbl">Vote de cette slide</span>
+      <b id="voteTitle"></b>
+      <div class="row"><span class="ph" id="votePh">fermé</span><span class="grow"></span><button class="btn pri" id="voteOpen" type="button">Ouvrir</button><button class="btn" id="voteClose" type="button">Fermer</button></div>
+    </div>
+    <div class="card">
+      <span class="lbl" id="nextLbl">Slide suivante</span>
+      <div class="next" id="nextBox"><iframe id="thumb" title="Slide suivante" tabindex="-1"></iframe><span class="more" id="more"></span></div>
+    </div>
+  </aside>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const qs=new URLSearchParams(location.search);
+const room=(qs.get('r')||'s1').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,20)||'s1';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
+let KEY=qs.get('k')||LS.get('mmv-k','');
+if(qs.get('k')){LS.set('mmv-k',KEY);history.replaceState(null,'',location.pathname+'?r='+room)}
+const MODES={chat:'Chat',vote:'Vote',main:'Main levée',equipes:'Équipes',tirage:'Tirage au sort',salle:'En binôme'};
+const deckEl=$('#deck'), thumbEl=$('#thumb');
+let D=null, acts=[], vstate={act:null,phase:'idle'}, notes=[], cur={i:0,step:0};
+const bc=('BroadcastChannel' in window)?new BroadcastChannel('mm-deck-'+room):null;
+
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2200)}
+async function api(path,body){
+  const r=await fetch(path,body?{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({r:room,k:KEY,...body})}:{cache:'no-store'});
+  if(r.status===403) throw Object.assign(new Error('key'),{key:true});
+  if(!r.ok) throw new Error('http');
+  return r.json();
+}
+function askKey(msg){
+  const w=document.createElement('div'); w.className='key';
+  w.innerHTML=`<form><b>${esc(msg)}</b><input type="password" placeholder="Clé animateur" autocomplete="current-password" required><button class="btn pri" type="submit">Valider</button></form>`;
+  document.body.appendChild(w);
+  w.querySelector('form').onsubmit=e=>{e.preventDefault();KEY=w.querySelector('input').value.trim();LS.set('mmv-k',KEY);w.remove();boot()};
+  setTimeout(()=>w.querySelector('input').focus(),50);
+}
+
+/* ---------- Chrono et écart au plan ---------- */
+const CK='mm-pres-clock-'+room;
+let clk=LS.get(CK,{acc:0,since:0});
+const elapsed=()=>clk.acc+(clk.since?Date.now()-clk.since:0);
+const fmt=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/3600)+':'+String(Math.floor(s/60)%60).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+function drawClock(){
+  $('#clock').textContent=fmt(elapsed());
+  $('#clockBtn').textContent=clk.since?'Pause':(clk.acc?'Reprendre':'Démarrer');
+  const planned=notes.slice(0,cur.i).reduce((s,n)=>s+(n?.[0]||0),0)*60000;
+  const d=$('#delta');
+  if(!clk.acc&&!clk.since){d.textContent='Prévu : '+Math.round(notes.reduce((s,n)=>s+(n?.[0]||0),0))+' min';d.className='delta';return}
+  const diff=Math.round((elapsed()-planned)/60000);
+  d.textContent=diff===0?'Dans le temps':diff>0?`+${diff} min de retard`:`${-diff} min d'avance`;
+  d.className='delta '+(diff>2?'late':diff<-2?'ahead':'');
+}
+$('#clockBtn').onclick=()=>{clk=clk.since?{acc:elapsed(),since:0}:{acc:clk.acc,since:Date.now()};LS.set(CK,clk);drawClock()};
+$('#clockReset').onclick=()=>{if(!confirm('Remettre le chrono à zéro ?'))return;clk={acc:0,since:0};LS.set(CK,clk);drawClock()};
+setInterval(drawClock,1000);
+
+/* ---------- Diffusion de la position ---------- */
+let pushT=null, lastSent='';
+function payload(){const s=D.state();return {i:s.i,step:s.step,scores:D.scores(),timers:D.timers(s.i)}}
+function push(){
+  clearTimeout(pushT);
+  pushT=setTimeout(async()=>{
+    const p=payload(); bc&&bc.postMessage({mm:'live',slide:p});
+    const k=JSON.stringify(p); if(k===lastSent) return;
+    try{await api('/api/state',{slide:p});lastSent=k;$('#sync').textContent='Apprenants synchronisés';$('#sync').className='sync ok'}
+    catch(e){if(e.key)return askKey('Clé animateur incorrecte');$('#sync').textContent='Synchro en échec, nouvel essai…';$('#sync').className='sync err';setTimeout(push,1500)}
+  },120);
+}
+if(bc) bc.onmessage=e=>{if(e.data?.mm==='hello'&&D) bc.postMessage({mm:'live',slide:payload()})};
+
+/* ---------- Panneau de la slide ---------- */
+function showSlide(){
+  const s=D.state(); cur=s; LS.set('mm-pres-pos-'+room,s);
+  const info=D.info(s.i)||{}, n=notes[s.i]||[];
+  $('#meta').innerHTML=`<span>${s.i+1} / ${D.count}</span>${info.tag?`<span>${esc(info.tag)}</span>`:''}${info.mode?`<span class="m">${esc(MODES[info.mode]||info.mode)}${info.note?' · '+esc(info.note):''}</span>`:''}${n[0]!=null?`<span>${n[0]<1?'30 s':n[0]+' min'}</span>`:''}`;
+  $('#title').textContent=info.title||'';
+  $('#steps').innerHTML=info.steps?Array.from({length:info.steps},(_,k)=>`<i class="${k<s.step?'on':''}"></i>`).join(''):'';
+  $('#cues').innerHTML=n.slice(1).map(c=>`<li>${esc(c)}</li>`).join('')||'<li class="muted">Pas de consigne pour cette slide.</li>';
+  const left=(info.steps||0)-s.step, more=$('#more');
+  if(left>0){$('#nextLbl').textContent='Ensuite, sur cette slide';more.textContent=left+(left>1?' clics restants':' clic restant');more.classList.add('on');sendThumb(s.i,s.step+1)}
+  else{$('#nextLbl').textContent=s.i+1<D.count?'Slide suivante':'Fin du deck';more.classList.remove('on');sendThumb(Math.min(D.count-1,s.i+1),0)}
+  drawVote(info.act); drawClock();
+}
+function sendThumb(i,step){try{thumbEl.contentWindow.postMessage({mm:'show',i,step},location.origin)}catch{}}
+function fitThumb(){const b=$('#nextBox');thumbEl.style.transform=`scale(${b.clientWidth/1280})`}
+addEventListener('resize',fitThumb);
+
+/* ---------- Vote de la slide ---------- */
+let voteAct=null;
+function drawVote(actId){
+  voteAct=actId?acts.find(a=>a.id===actId):null;
+  $('#vote').hidden=!voteAct; if(!voteAct) return;
+  $('#voteTitle').textContent=voteAct.title;
+  const open=vstate.act===voteAct.id&&vstate.phase==='open', closed=vstate.act===voteAct.id&&vstate.phase==='closed';
+  $('#votePh').textContent=open?'ouvert':closed?'fermé, résultats à l\'écran':'pas encore ouvert';
+  $('#votePh').className='ph'+(open?' open':'');
+}
+async function setVote(phase){
+  if(!voteAct) return;
+  try{vstate=await api('/api/state',{act:voteAct.id,phase});toast(phase==='open'?'Vote ouvert sur les téléphones':'Vote fermé');drawVote(voteAct.id)}
+  catch(e){if(e.key)return askKey('Clé animateur incorrecte');toast('Erreur réseau')}
+}
+$('#voteOpen').onclick=()=>setVote('open'); $('#voteClose').onclick=()=>setVote('closed');
+async function pollVote(){try{const s=await api(`/api/state?r=${room}&_=${Date.now()}`);vstate=s;if(voteAct)drawVote(voteAct.id)}catch{}setTimeout(pollVote,3000)}
+
+/* ---------- Navigation ---------- */
+$('#next').onclick=()=>D&&D.next(); $('#prev').onclick=()=>D&&D.prev();
+addEventListener('keydown',e=>{
+  if(!D||e.target.closest('input,textarea,.key')) return;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();D.next()}
+  else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();D.prev()}
+});
+$('#proj').onclick=()=>window.open(`/deck/${room}.html?live=mirror&r=${room}#slide-${cur.i+1}`,'mm-proj-'+room,'popup,width=1280,height=760');
+$('#votes').href='/animateur?r='+room;
+
+/* ---------- Démarrage ---------- */
+async function boot(){
+  $('#roomlbl').textContent=room.toUpperCase();
+  try{const r=await api('/api/state',{check:true});acts=r.acts}catch(e){return askKey(KEY?'Clé incorrecte, réessayez':'Clé animateur')}
+  const st=await api(`/api/state?r=${room}`); $('#stitle').textContent=st.title||room; document.title='Présentateur · '+(st.title||room);
+  if(!st.deck){$('#title').textContent='Pas de deck pour cette salle.';return}
+  await new Promise(res=>{const s=document.createElement('script');s.src='/deck/notes.js';s.onload=res;s.onerror=res;document.head.appendChild(s)});
+  notes=(window.NOTES||{})[room]||[];
+  const pos=LS.get('mm-pres-pos-'+room,{i:0,step:0});
+  thumbEl.src=`/deck/${room}.html?live=thumb&r=${room}`;
+  thumbEl.onload=()=>{fitThumb();if(D)showSlide()};
+  deckEl.src=`/deck/${room}.html?live=presenter&r=${room}#slide-${pos.i+1}`;
+  deckEl.onload=()=>{
+    const w=deckEl.contentWindow; D=w.DeckAPI; if(!D) return;
+    if(pos.step) D.go(pos.i,pos.step);
+    w.__deckChanged=()=>{showSlide();push()};
+    w.__deckScores=()=>push();
+    w.__deckTimer=()=>push();
+    showSlide(); push(); w.focus();
+  };
+  pollVote();
+}
+boot();
+</script>
+</body>
+</html>
