@@ -1,7 +1,6 @@
 import { list, getJSON, cached, dec, room as R } from './_store.js';
 import { SESSIONS, findAct, TEAMS } from './_q.js';
 
-export const HOST_KEY = () => process.env.HOST_KEY || (process.env.LOCAL_STORE ? 'test' : null);
 
 export async function readState(r) {
   return cached('state:' + r, 1000, async () =>
