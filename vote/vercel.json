@@ -1,7 +1,27 @@
 {
   "rewrites": [
-    { "source": "/animateur", "destination": "/host.html" },
-    { "source": "/:room((?!api|host|index|favicon)[a-z0-9-]{1,20})", "destination": "/index.html" }
+    {
+      "source": "/animateur",
+      "destination": "/host.html"
+    },
+    {
+      "source": "/presentateur",
+      "destination": "/presenter.html"
+    },
+    {
+      "source": "/:room((?!api|host|index|favicon|deck|presenter|presentateur)[a-z0-9-]{1,20})",
+      "destination": "/index.html"
+    }
   ],
-  "headers": [{ "source": "/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }]
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ]
 }

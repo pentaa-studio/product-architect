@@ -8,6 +8,11 @@ export async function readState(r) {
     (await getJSON(`r/${r}/state.json`)) || { act: null, phase: 'idle', ts: 0 });
 }
 
+// Position du deck diffusée par le présentateur (slide, clic, scores, minuteurs).
+export async function readSlide(r) {
+  return cached('slide:' + r, 700, async () => (await getJSON(`r/${r}/slide.json`)) || null);
+}
+
 const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/[^a-z0-9 '-]/g, ' ').replace(/\s+/g, ' ').trim();
 

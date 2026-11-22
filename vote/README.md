@@ -9,6 +9,15 @@ Petit outil de vote en direct pour les séances de formation : sondages, nuage d
 
 Raccourcis animateur : `P` mode présentation, `O` ouvrir, `F` fermer, `↑` `↓` changer d'activité, `C` correction du QCM, `H` écran d'accueil.
 
+## Le deck en direct
+
+Les séances `s1`, `s2` et `s3` ont aussi leur deck (`deck: true` dans `api/_q.js`).
+
+- **Présentateur** : `https://<domaine>/presentateur?r=s1&k=<HOST_KEY>`. Le deck à gauche ; à droite, la slide suivante, l'aide-mémoire (durée prévue et consignes), le chrono avec l'écart au plan, et l'ouverture du vote quand la slide en a un. « Fenêtre de projection » ouvre le deck seul, à partager en visio.
+- **Apprenants** : la même adresse que pour voter (`/s1`). Sur ordinateur, les slides à gauche suivent le formateur (position, scores, minuteurs) et le vote reste à droite. On peut revenir en arrière ; un bouton « Revenir au direct » recale sur le formateur.
+- Les decks sont dans `public/deck/` (`s1.html`, `s2.html`, `s3.html`), avec `live.js` (modes de suivi) et `notes.js` (aide-mémoire, une entrée par slide, dans l'ordre).
+- La position est stockée à part des votes (`r/<salle>/slide.json`), et transmise par `/api/state`.
+
 ## Modifier les questions
 
 Tout est dans `api/_q.js`. Une séance = une clé (`s1`, `s2`…), une liste d'activités :
