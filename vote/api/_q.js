@@ -37,6 +37,31 @@ export const SESSIONS = {
       { id: 'repart', kind: 'word', title: 'Un mot pour dire avec quoi vous repartez', max: 1 },
     ],
   },
+  s2: {
+    title: 'Séance 2 · Cadrer la valeur',
+    acts: [
+      {
+        id: 'qcm', kind: 'quiz', title: 'QCM · 10 questions sur la séance',
+        questions: [
+          { q: "Les trois niveaux de la chaîne d'impact, dans l'ordre :", o: ['Stratégique, activation, opérationnel', 'Opérationnel, activation, stratégique', 'Activation, opérationnel, stratégique', 'Données, modèle, UX'], ok: 1 },
+          { q: "Le taux d'écoute complète des playlists générées est un indicateur…", o: ['Opérationnel', "D'activation", 'Stratégique', 'De coût'], ok: 1 },
+          { q: "Un modèle très précis que personne n'utilise…", o: ['Rapporte quand même', 'Ne rapporte rien', 'Finit toujours par rapporter', 'Est un KPI stratégique'], ok: 1 },
+          { q: "Dans le retour d'expérience sur le churn, la première version reposait sur…", o: ['Un modèle de deep learning', 'Un agent', 'Des règles simples, sans IA', 'Un fine-tuning'], ok: 2 },
+          { q: "Une hypothèse de la chaîne d'impact s'écrit…", o: ['Si…, alors…, ce qui…', 'En tant que…, je veux…', 'Étant donné…, quand…, alors…', 'Objectif, résultats clés'], ok: 0 },
+          { q: "Chez Anthropic, un token généré coûte, par rapport à un token lu…", o: ['Le même prix', 'Moins cher', 'Environ 5 fois plus cher', '100 fois plus cher'], ok: 2 },
+          { q: "Qu'est-ce qui fait le plus grimper la facture de tokens ?", o: ["Le nombre d'écrans de l'app", 'Le volume, la taille du contexte et le choix du modèle', 'Le nombre de développeurs', 'La langue des réponses'], ok: 1 },
+          { q: "Pour adapter un modèle à son métier, on commence par…", o: ['Le fine-tuning', 'Entraîner son propre modèle', 'Le prompting, puis le RAG si besoin', 'Le modèle le plus gros'], ok: 2 },
+          { q: "Le MVD, c'est le…", o: ['Minimum Viable Design', 'Minimum Valuable Data', 'Maximum Value Delivered', 'Model Validation Dataset'], ok: 1 },
+          { q: "Lequel n'est PAS un coût caché d'un projet IA ?", o: ["L'évaluation des réponses", 'La conduite du changement', 'La maintenance des prompts', 'Le nom de la fonctionnalité'], ok: 3 },
+        ],
+      },
+      {
+        id: 'retient', kind: 'poll', title: "Ce qu'on retient",
+        questions: [{ q: 'Lequel vous a le plus servi ?', o: ['Prouver', 'Chiffrer', 'Commencer petit'] }],
+      },
+      { id: 'repart', kind: 'word', title: 'Un mot pour dire avec quoi vous repartez', max: 1 },
+    ],
+  },
 };
 
 export const TEAMS = ['Jazz', 'Rock', 'Électro', 'Hip-hop'];
