@@ -38,7 +38,34 @@ function highlight(blocks: HTMLElement[], block: number, follow: boolean) {
   }
 }
 
+const TEXT = {
+  fr: {
+    listen: "Écouter l’article",
+    listenAria: "Écouter l'article",
+    pauseAria: "Mettre la lecture en pause",
+    pause: "Pause",
+    resume: "Reprendre",
+    left: (m: string) => `encore ${m}`,
+    speedAria: "Changer la vitesse de lecture",
+    stop: "Arrêter",
+    decimal: ",",
+  },
+  en: {
+    listen: "Listen to the article",
+    listenAria: "Listen to the article",
+    pauseAria: "Pause the reading",
+    pause: "Pause",
+    resume: "Resume",
+    left: (m: string) => `${m} left`,
+    speedAria: "Change the playback speed",
+    stop: "Stop",
+    decimal: ".",
+  },
+};
+type ListenLang = keyof typeof TEXT;
+
 function Player(props: {
+  lang: ListenLang;
   state: State;
   rate: number;
   minutesTotal: number;
@@ -50,13 +77,14 @@ function Player(props: {
   onSeek?: (ratio: number) => void;
 }) {
   const { state, rate } = props;
+  const t = TEXT[props.lang];
   return (
     <div className="mt-8 flex flex-wrap items-center gap-3">
       <button
         type="button"
         onClick={props.onToggle}
         className="group inline-flex items-center gap-3 rounded-full bg-ink py-2.5 pl-3 pr-5 text-bone transition hover:bg-morpho"
-        aria-label={state === "playing" ? "Mettre la lecture en pause" : "Écouter l'article"}
+        aria-label={state === "playing" ? t.pauseAria : t.listenAria}
       >
         <span className="grid size-7 place-items-center rounded-full bg-bone/15">
           {state === "playing" ? (
@@ -66,9 +94,9 @@ function Player(props: {
           )}
         </span>
         <span className="font-mono text-xs uppercase tracking-[0.18em]">
-          {state === "idle" && <>Écouter l’article · {formatMinutes(props.minutesTotal)}</>}
-          {state === "playing" && <>Pause · encore {formatMinutes(props.minutesLeft)}</>}
-          {state === "paused" && <>Reprendre · encore {formatMinutes(props.minutesLeft)}</>}
+          {state === "idle" && <>{t.listen} · {formatMinutes(props.minutesTotal)}</>}
+          {state === "playing" && <>{t.pause} · {t.left(formatMinutes(props.minutesLeft))}</>}
+          {state === "paused" && <>{t.resume} · {t.left(formatMinutes(props.minutesLeft))}</>}
         </span>
       </button>
 
@@ -76,9 +104,9 @@ function Player(props: {
         type="button"
         onClick={props.onRate}
         className="rounded-full border border-line px-3 py-2 font-mono text-xs tracking-[0.1em] transition hover:border-morpho hover:text-morpho"
-        aria-label="Changer la vitesse de lecture"
+        aria-label={t.speedAria}
       >
-        {String(rate).replace(".", ",")}×
+        {String(rate).replace(".", t.decimal)}×
       </button>
 
       {state !== "idle" && (
@@ -87,7 +115,7 @@ function Player(props: {
           onClick={props.onStop}
           className="rounded-full border border-line px-3 py-2 font-mono text-xs uppercase tracking-[0.15em] transition hover:border-morpho hover:text-morpho"
         >
-          Arrêter
+          {t.stop}
         </button>
       )}
 
@@ -161,7 +189,7 @@ function wrapWords(blocks: HTMLElement[], times: number[][] | undefined, starts:
 }
 
 /* ElevenLabs recording, with the text appearing word by word as it is read. */
-function AudioListen({ audio, targetId }: { audio: ArticleAudio; targetId: string }) {
+function AudioListen({ audio, targetId, lang }: { audio: ArticleAudio; targetId: string; lang: ListenLang }) {
   const el = useRef<HTMLAudioElement | null>(null);
   const blocks = useRef<HTMLElement[]>([]);
   const words = useRef<Word[]>([]);
@@ -293,6 +321,7 @@ function AudioListen({ audio, targetId }: { audio: ArticleAudio; targetId: strin
 
   return (
     <Player
+      lang={lang}
       state={state}
       rate={rate}
       minutesTotal={audio.duration / 60 / rate}
@@ -309,14 +338,14 @@ function AudioListen({ audio, targetId }: { audio: ArticleAudio; targetId: strin
 /* Browser speech synthesis fallback. */
 type Chunk = { text: string; block: number; chars: number };
 
-function pickVoice(voices: SpeechSynthesisVoice[]) {
-  const fr = voices.filter((v) => v.lang.toLowerCase().startsWith("fr"));
+function pickVoice(voices: SpeechSynthesisVoice[], lang: ListenLang) {
+  const fr = voices.filter((v) => v.lang.toLowerCase().startsWith(lang));
   const score = (v: SpeechSynthesisVoice) => {
     let s = 0;
     if (/natural|premium|enhanced|neural/i.test(v.name)) s += 4;
     if (/google/i.test(v.name)) s += 3;
-    if (/thomas|amélie|amelie|audrey|denise|henri|marie/i.test(v.name)) s += 2;
-    if (v.lang.toLowerCase() === "fr-fr") s += 1;
+    if (/thomas|amélie|amelie|audrey|denise|henri|marie|samantha|daniel|aria|jenny|guy|ava|andrew/i.test(v.name)) s += 2;
+    if (["fr-fr", "en-us", "en-gb"].includes(v.lang.toLowerCase())) s += 1;
     return s;
   };
   return fr.sort((a, b) => score(b) - score(a))[0] ?? null;
@@ -337,7 +366,7 @@ function splitSentences(text: string, max = 220): string[] {
   return out;
 }
 
-function SpeechListen({ title, targetId }: { title: string; targetId: string }) {
+function SpeechListen({ title, targetId, lang }: { title: string; targetId: string; lang: ListenLang }) {
   const [supported, setSupported] = useState(false);
   const [state, setState] = useState<State>("idle");
   const [rate, setRate] = useState(1);
@@ -360,7 +389,7 @@ function SpeechListen({ title, targetId }: { title: string; targetId: string }) 
     });
     setChunks(list);
 
-    const loadVoice = () => (voice.current = pickVoice(speechSynthesis.getVoices()));
+    const loadVoice = () => (voice.current = pickVoice(speechSynthesis.getVoices(), lang));
     loadVoice();
     speechSynthesis.addEventListener("voiceschanged", loadVoice);
     return () => {
@@ -368,7 +397,7 @@ function SpeechListen({ title, targetId }: { title: string; targetId: string }) 
       playing.current = false;
       speechSynthesis.cancel();
     };
-  }, [targetId, title]);
+  }, [targetId, title, lang]);
 
   const speakFrom = useCallback(
     (i: number) => {
@@ -385,7 +414,7 @@ function SpeechListen({ title, targetId }: { title: string; targetId: string }) 
       setIndex(i);
       highlight(blocks.current, chunks[i].block, true);
       const u = new SpeechSynthesisUtterance(chunks[i].text);
-      u.lang = "fr-FR";
+      u.lang = lang === "fr" ? "fr-FR" : "en-US";
       if (voice.current) u.voice = voice.current;
       u.rate = rateRef.current;
       u.onend = () => {
@@ -403,6 +432,7 @@ function SpeechListen({ title, targetId }: { title: string; targetId: string }) 
 
   return (
     <Player
+      lang={lang}
       state={state}
       rate={rate}
       minutesTotal={total / CHARS_PER_MINUTE / rate}
@@ -437,6 +467,16 @@ function SpeechListen({ title, targetId }: { title: string; targetId: string }) 
   );
 }
 
-export default function ListenArticle({ title, targetId, audio }: { title: string; targetId: string; audio?: ArticleAudio | null }) {
-  return audio ? <AudioListen audio={audio} targetId={targetId} /> : <SpeechListen title={title} targetId={targetId} />;
+export default function ListenArticle({
+  title,
+  targetId,
+  audio,
+  lang = "fr",
+}: {
+  title: string;
+  targetId: string;
+  audio?: ArticleAudio | null;
+  lang?: ListenLang;
+}) {
+  return audio ? <AudioListen audio={audio} targetId={targetId} lang={lang} /> : <SpeechListen title={title} targetId={targetId} lang={lang} />;
 }
