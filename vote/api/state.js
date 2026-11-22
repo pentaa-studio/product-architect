@@ -1,5 +1,5 @@
 import { putJSON, bust, readBody, send, room } from './_store.js';
-import { readState, readSlide, HOST_KEY, session } from './_logic.js';
+import { readState, readSlide, session } from './_logic.js';
 import { getJSON } from './_store.js';
 import { findAct, publicAct } from './_q.js';
 
@@ -16,7 +16,6 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
       const b = await readBody(req);
       const r = room(b.r);
-      if (!HOST_KEY() || b.k !== HOST_KEY()) return send(res, 403, { error: 'clé animateur invalide' });
       if (b.slide) {
         const v = b.slide, num = (x, max) => Math.max(0, Math.min(max, Math.floor(Number(x) || 0)));
         const slide = { i: num(v.i, 999), step: num(v.step, 99), ts: Date.now(),
