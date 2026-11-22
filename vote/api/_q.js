@@ -62,6 +62,35 @@ export const SESSIONS = {
       { id: 'repart', kind: 'word', title: 'Un mot pour dire avec quoi vous repartez', max: 1 },
     ],
   },
+  s3: {
+    title: 'Séance 3 · Prototyper et pitcher',
+    acts: [
+      {
+        id: 'pitch', kind: 'poll', title: 'Le vote du pitch',
+        questions: [{ q: 'Quel pitch vous a le plus convaincu ? (Pas le vôtre.)', o: ['Jazz', 'Rock', 'Électro', 'Hip-hop'] }],
+      },
+      {
+        id: 'qcm', kind: 'quiz', title: 'QCM · la dernière manche',
+        questions: [
+          { q: 'Les 3U : utile, utilisable et…', o: ['Unique', 'Utilisée', 'Universelle', 'Urgente'], ok: 1 },
+          { q: '« Pourquoi ce titre ? » sous chaque morceau, c\'est le pattern…', o: ['Orientation', 'Explicabilité', 'Garde-fous', 'Choix multiple'], ok: 1 },
+          { q: "Pour tester la valeur d'une IA sans casser le parcours existant, on privilégie…", o: ['Une expérience IA à part', "L'IA partout dès la V1", 'Un chat sur toutes les pages', 'Un design system spécial IA'], ok: 0 },
+          { q: "L'assistant prépare le virement, mais vous seul pouvez l'envoyer. C'est…", o: ['Human out of the loop', 'Human on the loop', 'Human in the loop', 'Un agent autonome'], ok: 2 },
+          { q: "Le code d'un prototype vibe-codé…", o: ['Part en production tel quel', 'Doit être repris avant la production', 'Remplace les développeurs', 'Est plus sûr que du code écrit à la main'], ok: 1 },
+          { q: "Avant d'améliorer un prompt, il faut d'abord…", o: ['Changer de modèle', 'Définir ses critères de succès', 'Écrire un prompt plus long', 'Demander à l\'IA de se corriger'], ok: 1 },
+          { q: 'Dans un test A/B de prompt, on garde identique…', o: ["L'entrée, par exemple la même humeur", 'Le ton', 'La longueur de la réponse', 'Rien du tout'], ok: 0 },
+          { q: "Pour qu'une app exploite la réponse de l'IA, on lui demande…", o: ['Un texte libre et chaleureux', 'Une sortie structurée, en JSON', 'Une image', 'Une réponse en anglais'], ok: 1 },
+          { q: 'Dans un projet Claude, les instructions du projet…', o: ['Ne servent qu\'au premier message', "S'appliquent à chaque conversation du projet", 'Sont visibles par tous les utilisateurs de Claude', 'Remplacent les fichiers du projet'], ok: 1 },
+          { q: "Avec l'IA, le plus dur aujourd'hui, c'est…", o: ['De construire', 'De choisir quoi construire', "D'écrire du code", 'De trouver un outil'], ok: 1 },
+        ],
+      },
+      {
+        id: 'retient', kind: 'poll', title: 'Ce que vous emportez',
+        questions: [{ q: 'Lequel vous servira le plus ?', o: ['Comprendre', 'Cadrer', 'Lancer', 'Designer', 'Prototyper'] }],
+      },
+      { id: 'repart', kind: 'word', title: 'Un mot pour dire avec quoi vous repartez', max: 1 },
+    ],
+  },
 };
 
 export const TEAMS = ['Jazz', 'Rock', 'Électro', 'Hip-hop'];
